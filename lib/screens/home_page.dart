@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:job_portal_app/screens/my_drawer_header.dart';
 import 'package:job_portal_app/screens/register_page.dart';
+import 'package:job_portal_app/widgets/register_interface.dart';
+import 'package:job_portal_app/widgets/bottom_navigation_bar_interface.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -12,75 +14,75 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.white70,
 
-
-        flexibleSpace: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: SizedBox(
-            width: size.width*0.2,
-            child: TextFormField(
-              decoration: const InputDecoration(
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(5),)
-                ),
-                suffixText: "Search Jobs",
-                prefixIcon: Icon(Icons.search),
-              ),
+        title: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 4),
+          child: TextFormField(
+            decoration: const InputDecoration(
+              border: InputBorder.none,
+              hintText: "Search Jobs",
+              prefixIcon: Icon(Icons.search),
             ),
           ),
         ),
-
-        bottom: PreferredSize(
-          preferredSize: const Size.fromHeight(10),
-          child: Container(
-                height: 1.0,
-                color: Colors.grey.withOpacity(0.5),
-          ),
-        ),
-
+        // automaticallyImplyLeading: false,
         ),
       drawer: Drawer(
         backgroundColor: Colors.blue,
         child: SingleChildScrollView(
-          child: Container(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: const [
-                MyDrawerHeader(),
-                // MyDrawerList(),
-              ],
-            ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: const [
+              MyDrawerHeader(),
+              // MyDrawerList(),
+            ],
           ),
         ),
       ),
         // centerTitle: true,
-      body: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Row(
-            children: [
-              ElevatedButton(
-                  onPressed: () {
-                    Navigator.push(
-                        context, MaterialPageRoute(
-                        builder: (context) => const RegisterPage(),
-                    ),
-                    );
-                  },
-                  child: const Text("Register"),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          // mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Row(
+              children: const [
+                RegisterInterface(),
+              ],
+            ),
+
+            const SizedBox(
+              height: 20,
+            ),
+
+            Center(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  ElevatedButton(
+                      onPressed: () {
+                        Navigator.push(
+                            context, MaterialPageRoute(
+                            builder: (context) => const RegisterPage(),
+                        ),
+                        );
+                      },
+                      child: const Text("Register"),
+                  ),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  ElevatedButton(
+                      onPressed: () {},
+                       child: const Text("Login"),
+                  ),
+                ],
               ),
-              const SizedBox(
-                width: 10,
-              ),
-              ElevatedButton(
-                  onPressed: () {},
-                   child: const Text("Login"),
-              ),
-            ],
-          )
-        ],
+            )
+          ],
+        ),
       ),
 
+    // bottomNavigationBar: const BottomNavigationBarInterface(),
     );
   }
 }
