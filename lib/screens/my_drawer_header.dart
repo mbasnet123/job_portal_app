@@ -5,20 +5,42 @@ class MyDrawerHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.start,
-      children: const [
-        CircleAvatar(
-          backgroundImage: AssetImage("assets/images/dummy_user.png"),
-        ),
-        Text(
-          "Build your profile",
-          style: TextStyle(
-            fontWeight: FontWeight.w400,)   ,
-        ),
-        Text("Job opportunities waiting for"
-            " you at RojgaarApp"),
-      ],
+    return Padding(
+      padding: const EdgeInsets.all(20.0),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        // crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: const [
+              CircleAvatar(
+                backgroundImage: AssetImage("assets/images/dummy_user.png"),
+              ),
+
+              SizedBox(
+                width: 10,
+              ),
+
+
+              Text(
+                "Build your profile",
+                style: TextStyle(
+                  fontWeight: FontWeight.w400,)   ,
+              ),
+
+            ],
+          ),
+
+
+          const SizedBox(
+            height: 10,
+          ),
+
+          const Text("Job opportunities waiting for"
+              " you at RojgaarApp"),
+        ],
+      ),
+
     );
   }
 }

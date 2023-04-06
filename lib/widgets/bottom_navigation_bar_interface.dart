@@ -5,8 +5,7 @@ class BottomNavigationBarInterface extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      bottomNavigationBar: BottomNavigationBar(
+    return BottomNavigationBar(
         items: const [
           BottomNavigationBarItem(
               icon: Icon(Icons.home,),
@@ -32,7 +31,6 @@ class BottomNavigationBarInterface extends StatelessWidget {
             backgroundColor: Colors.blueAccent,
           ),
         ],
-      ),
-    );
+      );
   }
 }

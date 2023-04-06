@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:job_portal_app/screens/login_page.dart';
 import 'package:job_portal_app/screens/my_drawer_header.dart';
 import 'package:job_portal_app/screens/register_page.dart';
 import 'package:job_portal_app/widgets/register_interface.dart';
@@ -72,7 +73,13 @@ class HomePage extends StatelessWidget {
                     width: 10,
                   ),
                   ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(
+                          context, MaterialPageRoute(
+                            builder: (context) => const LoginPage(),
+                        ),
+                        );
+                      },
                        child: const Text("Login"),
                   ),
                 ],
@@ -82,7 +89,7 @@ class HomePage extends StatelessWidget {
         ),
       ),
 
-    // bottomNavigationBar: const BottomNavigationBarInterface(),
+    bottomNavigationBar: const BottomNavigationBarInterface(),
     );
   }
 }
