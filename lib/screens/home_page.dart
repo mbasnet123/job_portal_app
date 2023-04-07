@@ -26,7 +26,7 @@ class HomePage extends StatelessWidget {
           ),
         ),
         // automaticallyImplyLeading: false,
-        ),
+      ),
       drawer: Drawer(
         backgroundColor: Colors.blue,
         child: SingleChildScrollView(
@@ -39,57 +39,172 @@ class HomePage extends StatelessWidget {
           ),
         ),
       ),
-        // centerTitle: true,
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          // mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Row(
-              children: const [
-                RegisterInterface(),
-              ],
-            ),
-
-            const SizedBox(
-              height: 20,
-            ),
-
-            Center(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  ElevatedButton(
-                      onPressed: () {
-                        Navigator.push(
-                            context, MaterialPageRoute(
-                            builder: (context) => const RegisterPage(),
-                        ),
-                        );
-                      },
-                      child: const Text("Register"),
-                  ),
-                  const SizedBox(
-                    width: 10,
-                  ),
-                  ElevatedButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context, MaterialPageRoute(
-                            builder: (context) => const LoginPage(),
-                        ),
-                        );
-                      },
-                       child: const Text("Login"),
-                  ),
+      // centerTitle: true,
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            // mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Row(
+                children: const [
+                  RegisterInterface(),
                 ],
               ),
-            )
-          ],
+              const SizedBox(
+                height: 20,
+              ),
+              Center(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    ElevatedButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const RegisterPage(),
+                          ),
+                        );
+                      },
+                      style: ElevatedButton.styleFrom(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(15),
+                        ),
+                      ),
+                      child: const Text("Register"),
+                    ),
+                    const SizedBox(
+                      width: 10,
+                    ),
+                    ElevatedButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const LoginPage(),
+                          ),
+                        );
+                      },
+                      style: ElevatedButton.styleFrom(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(15),
+                        ),
+                      ),
+                      child: const Text("Login"),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              const Divider(
+                color: Colors.black,
+                thickness: 3,
+              ),
+              SizedBox(
+                height: 80,
+                width: 80,
+                child: Image.asset("assets/images/magnifying-glass.jpg"),
+              ),
+              const Padding(
+                padding: EdgeInsets.all(8.0),
+                child: Text(
+                  "Get your dream job",
+                  style: TextStyle(
+                    fontSize: 20,
+                  ),
+                ),
+              ),
+              const TextField(
+                decoration: InputDecoration(
+                  border: InputBorder.none,
+                  hintText: "Enter skills",
+                  hintStyle: TextStyle(
+                    fontSize: 25,
+                    color: Colors.brown,
+                  ),
+                ),
+              ),
+              const Divider(
+                thickness: 3,
+              ),
+              const TextField(
+                decoration: InputDecoration(
+                  border: InputBorder.none,
+                  hintText: "Enter Location",
+                  hintStyle: TextStyle(
+                    fontSize: 25,
+                    color: Colors.brown,
+                  ),
+                ),
+              ),
+              const Divider(
+                thickness: 3,
+              ),
+              const SizedBox(
+                height: 15,
+              ),
+              ElevatedButton(
+                onPressed: () {},
+                style: ElevatedButton.styleFrom(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15),
+                  ),
+                ),
+                child: const Text("Search Jobs"),
+              ),
+              Divider(
+                thickness: 8,
+                color: Colors.grey.shade100,
+              ),
+              const Text(
+                "Companies",
+                style: TextStyle(
+                  fontSize: 20,
+                ),
+              ),
+              // ListView(
+              //   scrollDirection: Axis.horizontal,
+              //   children: const [
+              //     Padding(
+              //       padding: EdgeInsets.all(8.0),
+              //       child: Text(
+              //         "One",
+              //         style: TextStyle(
+              //           fontSize: 5,
+              //         ),
+              //       ),
+              //     ),
+              //
+              //     Padding(
+              //       padding: EdgeInsets.all(8.0),
+              //       child: Text(
+              //         "Two",
+              //         style: TextStyle(
+              //           fontSize: 5,
+              //         ),
+              //       ),
+              //     ),
+              //
+              //     Padding(
+              //       padding: EdgeInsets.all(8.0),
+              //       child: Text(
+              //         "Three",
+              //         style: TextStyle(
+              //           fontSize: 5,
+              //         ),
+              //       ),
+              //     ),
+              //   ],
+              // )
+            ],
+          ),
         ),
       ),
 
-    bottomNavigationBar: const BottomNavigationBarInterface(),
+      bottomNavigationBar: const BottomNavigationBarInterface(),
     );
   }
 }

@@ -13,8 +13,11 @@ class MyDrawerHeader extends StatelessWidget {
         children: [
           Row(
             children: const [
-              CircleAvatar(
-                backgroundImage: AssetImage("assets/images/dummy_user.png"),
+              SizedBox(
+                child: CircleAvatar(
+                  backgroundImage: AssetImage("assets/images/dummy_user.png"),
+
+                ),
               ),
 
               SizedBox(
@@ -37,7 +40,7 @@ class MyDrawerHeader extends StatelessWidget {
           ),
 
           const Text("Job opportunities waiting for"
-              " you at RojgaarApp"),
+              " you at NepaJob"),
         ],
       ),
 

@@ -11,15 +11,7 @@ class RegisterInterface extends StatelessWidget {
         Column(
           children: const [
             Text(
-              "Make the most out of Rojgaar by",
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-                color: Colors.blueAccent,
-              ),
-            ),
-            Text(
-              "creating your job profile",
+              "Make the most out of NepaJob by\n      creating your job profile",
               style: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
