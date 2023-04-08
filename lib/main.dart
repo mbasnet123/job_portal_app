@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'dart:ui';
 import 'package:job_portal_app/screens/home_page.dart';
 import 'package:job_portal_app/screens/my_drawer_header.dart';
+import 'package:job_portal_app/widgets/splash_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,7 +17,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(primaryColor: Colors.blue),
-      home: const HomePage(),
+      home: const SplashScreen(),
     );
   }
 }

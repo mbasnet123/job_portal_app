@@ -28,7 +28,7 @@ class HomePage extends StatelessWidget {
         // automaticallyImplyLeading: false,
       ),
       drawer: Drawer(
-        backgroundColor: Colors.blue,
+        backgroundColor: Colors.white,
         child: SingleChildScrollView(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
@@ -198,7 +198,7 @@ class HomePage extends StatelessWidget {
               //       ),
               //     ),
               //   ],
-              // )
+              // ),
             ],
           ),
         ),
