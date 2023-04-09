@@ -68,6 +68,7 @@ class HomePage extends StatelessWidget {
                         );
                       },
                       style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.black45,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(15),
                         ),
@@ -87,6 +88,8 @@ class HomePage extends StatelessWidget {
                         );
                       },
                       style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.redAccent,
+                        // primary: Color(Colors.redAccent),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(15),
                         ),
@@ -100,8 +103,8 @@ class HomePage extends StatelessWidget {
                 height: 10,
               ),
               const Divider(
-                color: Colors.black,
-                thickness: 3,
+                color: Colors.grey,
+                thickness: 8,
               ),
               SizedBox(
                 height: 80,

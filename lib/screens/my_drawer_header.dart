@@ -9,7 +9,7 @@ class MyDrawerHeader extends StatelessWidget {
       padding: const EdgeInsets.all(20.0),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
-        // crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
             children: const [
@@ -45,21 +45,33 @@ class MyDrawerHeader extends StatelessWidget {
             onPressed: () {},
             icon: const Icon(Icons.search),
             label: const Text("Search Jobs"),
+            style: TextButton.styleFrom(
+              primary: Colors.purpleAccent,
+            ),
           ),
           TextButton.icon(
             onPressed: () {},
             icon: const Icon(Icons.chat),
             label: const Text("Chat for help"),
+            style: TextButton.styleFrom(
+              primary: Colors.purpleAccent,
+            ),
           ),
           TextButton.icon(
             onPressed: () {},
             icon: const Icon(Icons.notes),
             label: const Text("NepaJob Blog"),
+            style: TextButton.styleFrom(
+              primary: Colors.purpleAccent,
+            ),
           ),
           TextButton.icon(
             onPressed: () {},
             icon: const Icon(Icons.info),
             label: const Text("About us"),
+            style: TextButton.styleFrom(
+              primary: Colors.purpleAccent,
+            ),
           ),
           const SizedBox(
             height: 140,
