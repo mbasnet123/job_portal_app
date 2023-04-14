@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:job_portal_app/models/Company.dart';
 import 'package:job_portal_app/screens/login_page.dart';
 import 'package:job_portal_app/screens/my_drawer_header.dart';
 import 'package:job_portal_app/screens/register_page.dart';
 import 'package:job_portal_app/widgets/register_interface.dart';
 import 'package:job_portal_app/widgets/bottom_navigation_bar_interface.dart';
+
+import '../components/companies.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -14,7 +17,13 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white70,
-
+        // leading: Builder(builder: (context) {
+        //   return IconButton(
+        //     onPressed: () => Scaffold.of(context).openDrawer(
+        //     ),
+        //     icon: const Icon(Icons.menu),
+        //   );
+        // }),
         title: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 4),
           child: TextFormField(
@@ -44,6 +53,7 @@ class HomePage extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             // mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Row(
@@ -106,17 +116,21 @@ class HomePage extends StatelessWidget {
                 color: Colors.grey,
                 thickness: 8,
               ),
-              SizedBox(
-                height: 80,
-                width: 80,
-                child: Image.asset("assets/images/magnifying-glass.jpg"),
+              Center(
+                child: SizedBox(
+                  height: 80,
+                  width: 80,
+                  child: Image.asset("assets/images/magnifying-glass.jpg"),
+                ),
               ),
-              const Padding(
-                padding: EdgeInsets.all(8.0),
-                child: Text(
-                  "Get your dream job",
-                  style: TextStyle(
-                    fontSize: 20,
+              const Center(
+                child: Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: Text(
+                    "Get your dream job",
+                    style: TextStyle(
+                      fontSize: 20,
+                    ),
                   ),
                 ),
               ),
@@ -149,59 +163,45 @@ class HomePage extends StatelessWidget {
               const SizedBox(
                 height: 15,
               ),
-              ElevatedButton(
-                onPressed: () {},
-                style: ElevatedButton.styleFrom(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(15),
+              Center(
+                child: ElevatedButton(
+                  onPressed: () {},
+                  style: ElevatedButton.styleFrom(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15),
+                    ),
                   ),
+                  child: const Text("Search Jobs"),
                 ),
-                child: const Text("Search Jobs"),
               ),
               Divider(
                 thickness: 8,
                 color: Colors.grey.shade100,
               ),
-              const Text(
-                "Companies",
-                style: TextStyle(
-                  fontSize: 20,
+              const Center(
+                child: Text(
+                  "Companies",
+                  style: TextStyle(
+                    fontSize: 20,
+                  ),
                 ),
               ),
-              // ListView(
-              //   scrollDirection: Axis.horizontal,
-              //   children: const [
-              //     Padding(
-              //       padding: EdgeInsets.all(8.0),
-              //       child: Text(
-              //         "One",
-              //         style: TextStyle(
-              //           fontSize: 5,
-              //         ),
-              //       ),
-              //     ),
-              //
-              //     Padding(
-              //       padding: EdgeInsets.all(8.0),
-              //       child: Text(
-              //         "Two",
-              //         style: TextStyle(
-              //           fontSize: 5,
-              //         ),
-              //       ),
-              //     ),
-              //
-              //     Padding(
-              //       padding: EdgeInsets.all(8.0),
-              //       child: Text(
-              //         "Three",
-              //         style: TextStyle(
-              //           fontSize: 5,
-              //         ),
-              //       ),
-              //     ),
-              //   ],
-              // ),
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  children: List.generate(
+                    demo_company.length,
+                    (index) =>
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: CompanyCard(
+                              image: demo_company[index].image,
+                              title: demo_company[index].title,
+                              press: (){}),
+                        ),
+                  ),
+                ),
+              ),
             ],
           ),
         ),
@@ -211,3 +211,4 @@ class HomePage extends StatelessWidget {
     );
   }
 }
+

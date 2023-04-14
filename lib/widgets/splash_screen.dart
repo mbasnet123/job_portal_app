@@ -34,9 +34,9 @@ class _SplashScreenState extends State<SplashScreen> {
         padding: EdgeInsets.all(60.0),
         child: Center(
           child: Text(
-            "Nepajob\n\n\nOne stop destination\nfor all your career\nactivities,",
+            "Nepajob",
             style: TextStyle(
-                fontSize: 20,
+                fontSize: 35,
                 color: Colors.white,
                 fontWeight: FontWeight.w700),
           ),
