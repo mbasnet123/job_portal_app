@@ -7,6 +7,7 @@ import 'package:job_portal_app/widgets/register_interface.dart';
 import 'package:job_portal_app/widgets/bottom_navigation_bar_interface.dart';
 
 import '../components/companies.dart';
+import '../components/company_vertical.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -178,30 +179,28 @@ class HomePage extends StatelessWidget {
                 thickness: 8,
                 color: Colors.grey.shade100,
               ),
-              const Center(
-                child: Text(
-                  "Companies",
-                  style: TextStyle(
-                    fontSize: 20,
+              Row(
+                children: [
+                  const Text(
+                    "Companies",
+                    style: TextStyle(color: Colors.black, fontSize: 20),
                   ),
-                ),
-              ),
-              SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  children: List.generate(
-                    demo_company.length,
-                    (index) =>
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: CompanyCard(
-                              image: demo_company[index].image,
-                              title: demo_company[index].title,
-                              press: (){}),
-                        ),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const CompanyVertical()),
+                      );
+                    },
+                    child: const Text(
+                      "See all",
+                      style: TextStyle(color: Colors.blue, fontSize: 20),
+                    ),
                   ),
-                ),
+                ],
               ),
+              const CompanyList(),
             ],
           ),
         ),
