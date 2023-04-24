@@ -27,9 +27,8 @@ class _BottomNavigationBarInterfaceState extends State<BottomNavigationBarInterf
   }
   @override
   Widget build(BuildContext context) {
-    //return Scaffold(body: pages[currentIndex])
-    return BottomNavigationBar(
-      // key: pages[currentIndex],
+    return Scaffold(body: pages[currentIndex], bottomNavigationBar:
+     BottomNavigationBar(
       onTap: onTap,
         unselectedFontSize: 0,
         selectedFontSize: 0,
@@ -67,6 +66,6 @@ class _BottomNavigationBarInterfaceState extends State<BottomNavigationBarInterf
           ),
         ],
 
-      );
+      ),);
   }
 }

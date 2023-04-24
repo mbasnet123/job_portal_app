@@ -7,7 +7,16 @@ class InboxPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: const [
-        Text("This is Inbox page")
+        Padding(
+          padding: EdgeInsets.all(28.0),
+          child: Text(
+            "This is Inbox page",
+            style: TextStyle(
+              color: Colors.black,
+              fontSize: 20,
+            ),
+          ),
+        )
       ],
     );
   }

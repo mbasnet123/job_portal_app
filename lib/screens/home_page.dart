@@ -9,9 +9,14 @@ import 'package:job_portal_app/widgets/bottom_navigation_bar_interface.dart';
 import '../components/companies.dart';
 import '../components/company_vertical.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
 
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -205,8 +210,6 @@ class HomePage extends StatelessWidget {
           ),
         ),
       ),
-
-      bottomNavigationBar: const BottomNavigationBarInterface(),
     );
   }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:job_portal_app/screens/home_page.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -8,6 +9,14 @@ class LoginPage extends StatelessWidget {
     return Scaffold(
       body: Stack(
         children: [
+          Padding(
+            padding: const EdgeInsets.only(top: 20),
+            child: IconButton(
+                onPressed: (){
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=> const HomePage()),);
+                }, icon: const Icon(Icons.arrow_back)),
+          ),
+
           const Padding(
             padding: EdgeInsets.only(left: 40, top: 80),
             child: Text(

@@ -7,7 +7,12 @@ class AppliesPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: const [
-        Text("This is Applies page")
+        Padding(
+          padding: EdgeInsets.all(36.0),
+          child: Text("This is Applies page",
+          style: TextStyle(color: Colors.black,
+          fontSize: 20),),
+        )
       ],
     );
   }

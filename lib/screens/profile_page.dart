@@ -7,7 +7,12 @@ class ProfilePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: const [
-        Text("This is profile page")
+        Padding(
+          padding: EdgeInsets.all(28.0),
+          child: Text("This is profile page",
+          style: TextStyle(color: Colors.black,
+          fontSize: 20),),
+        )
       ],
     );
   }
