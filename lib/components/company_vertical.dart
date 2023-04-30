@@ -14,7 +14,7 @@ class CompanyVertical extends StatelessWidget {
       child: Column(
         children: List.generate(
           demo_company.length,
-          (index) => CompanyView(
+              (index) => CompanyView(
               image: demo_company[index].image,
               title: demo_company[index].title),
         ),
@@ -36,8 +36,8 @@ class CompanyView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Padding(
-          padding: const EdgeInsets.only(top: 10),
+        SizedBox(
+          width: 160,
           child: Image(
             image: AssetImage(image),
             fit: BoxFit.cover,
