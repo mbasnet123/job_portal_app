@@ -15,28 +15,33 @@ class CompanyCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return OutlinedButton(
-      onPressed: press,
-      style: OutlinedButton.styleFrom(
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(
-            Radius.circular(6),
-          ),
+    return Container(
+      decoration: BoxDecoration(
+          border: Border.all(color: Colors.grey),
+          borderRadius: BorderRadius.circular(5)),
+      child: InkWell(
+        onTap: press,
+        // style: OutlinedButton.styleFrom(
+        //   shape: const RoundedRectangleBorder(
+        //     borderRadius: BorderRadius.all(
+        //       Radius.circular(6),
+        //     ),
+        //   ),
+        // ),
+        child: Column(
+          children: [
+            Image(
+              image: AssetImage(image),
+              height: 150,
+              width: 120,
+              fit: BoxFit.cover,
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            Text(title),
+          ],
         ),
-      ),
-      child: Column(
-        children: [
-          Image(
-            image: AssetImage(image),
-            height: 150,
-            width: 120,
-            fit: BoxFit.cover,
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          Text(title),
-        ],
       ),
     );
   }

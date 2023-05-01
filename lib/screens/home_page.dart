@@ -42,15 +42,17 @@ class _HomePageState extends State<HomePage> {
         ),
         // automaticallyImplyLeading: false,
       ),
-      drawer: Drawer(
-        backgroundColor: Colors.white,
-        child: SingleChildScrollView(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: const [
-              MyDrawerHeader(),
-              // MyDrawerList(),
-            ],
+      drawer: SafeArea(
+        child: Drawer(
+          backgroundColor: Colors.white,
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: const [
+                MyDrawerHeader(),
+                // MyDrawerList(),
+              ],
+            ),
           ),
         ),
       ),
