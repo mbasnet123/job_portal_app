@@ -18,7 +18,7 @@ class CompanyCard extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
           border: Border.all(color: Colors.grey),
-          borderRadius: BorderRadius.circular(5)),
+          borderRadius: BorderRadius.circular(5),),
       child: InkWell(
         onTap: press,
         // style: OutlinedButton.styleFrom(

@@ -21,27 +21,6 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white70,
-        // leading: Builder(builder: (context) {
-        //   return IconButton(
-        //     onPressed: () => Scaffold.of(context).openDrawer(
-        //     ),
-        //     icon: const Icon(Icons.menu),
-        //   );
-        // }),
-        title: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 4),
-          child: TextFormField(
-            decoration: const InputDecoration(
-              border: InputBorder.none,
-              hintText: "Search Jobs",
-              prefixIcon: Icon(Icons.search),
-            ),
-          ),
-        ),
-        // automaticallyImplyLeading: false,
-      ),
       drawer: SafeArea(
         child: Drawer(
           backgroundColor: Colors.white,
@@ -55,6 +34,28 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
         ),
+      ),
+      appBar: AppBar(
+        backgroundColor: Colors.white70,
+        leading: Builder(builder: (context) {
+          return IconButton(
+            onPressed: () => Scaffold.of(context).openDrawer(
+            ),
+            icon: const Icon(Icons.menu,
+            color: Colors.cyan,),
+          );
+        }),
+        title: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 4),
+          child: TextFormField(
+            decoration: const InputDecoration(
+              border: InputBorder.none,
+              hintText: "Search Jobs",
+              prefixIcon: Icon(Icons.search),
+            ),
+          ),
+        ),
+        // automaticallyImplyLeading: false,
       ),
       // centerTitle: true,
       body: SingleChildScrollView(
