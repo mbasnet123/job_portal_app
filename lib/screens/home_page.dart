@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:job_portal_app/models/Company.dart';
+import 'package:job_portal_app/screens/company_authentication.dart';
+import 'package:job_portal_app/screens/job_seeker_authentication.dart';
 import 'package:job_portal_app/screens/login_page.dart';
 import 'package:job_portal_app/screens/my_drawer_header.dart';
 import 'package:job_portal_app/screens/register_page.dart';
@@ -39,10 +41,11 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: Colors.white70,
         leading: Builder(builder: (context) {
           return IconButton(
-            onPressed: () => Scaffold.of(context).openDrawer(
+            onPressed: () => Scaffold.of(context).openDrawer(),
+            icon: const Icon(
+              Icons.menu,
+              color: Colors.cyan,
             ),
-            icon: const Icon(Icons.menu,
-            color: Colors.cyan,),
           );
         }),
         title: Padding(
@@ -73,51 +76,94 @@ class _HomePageState extends State<HomePage> {
               const SizedBox(
                 height: 20,
               ),
+              // Center(
+              //   child: Row(
+              //     mainAxisAlignment: MainAxisAlignment.center,
+              //     children: [
+              //       ElevatedButton(
+              //         onPressed: () {
+              //           Navigator.push(
+              //             context,
+              //             MaterialPageRoute(
+              //               builder: (context) => const RegisterPage(),
+              //             ),
+              //           );
+              //         },
+              //         style: ElevatedButton.styleFrom(
+              //           backgroundColor: Colors.black45,
+              //           shape: RoundedRectangleBorder(
+              //             borderRadius: BorderRadius.circular(15),
+              //           ),
+              //         ),
+              //         child: const Text("Register"),
+              //       ),
+              //       const SizedBox(
+              //         width: 10,
+              //       ),
+              //       ElevatedButton(
+              //         onPressed: () {
+              //           Navigator.push(
+              //             context,
+              //             MaterialPageRoute(
+              //               builder: (context) => const LoginPage(),
+              //             ),
+              //           );
+              //         },
+              //         style: ElevatedButton.styleFrom(
+              //           backgroundColor: Colors.redAccent,
+              //           // primary: Color(Colors.redAccent),
+              //           shape: RoundedRectangleBorder(
+              //             borderRadius: BorderRadius.circular(15),
+              //           ),
+              //         ),
+              //         child: const Text("Login"),
+              //       ),
+              //     ],
+              //   ),
+              // ),
+
               Center(
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     ElevatedButton(
                       onPressed: () {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => const RegisterPage(),
-                          ),
+                              builder: (context) => const CompanyAuth()),
                         );
                       },
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.black45,
+                        backgroundColor: Colors.redAccent,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(15),
                         ),
                       ),
-                      child: const Text("Register"),
+                      child: const Text("Company"),
                     ),
-                    const SizedBox(
-                      width: 10,
-                    ),
+
                     ElevatedButton(
                       onPressed: () {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => const LoginPage(),
+                            builder: (context) => const JobSeekerAuth(),
                           ),
                         );
                       },
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.redAccent,
-                        // primary: Color(Colors.redAccent),
+                        backgroundColor: Colors.purpleAccent,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(15),
                         ),
                       ),
-                      child: const Text("Login"),
+                      child: const Text("JobSeeker"),
                     ),
                   ],
                 ),
               ),
+
               const SizedBox(
                 height: 10,
               ),
@@ -216,4 +262,3 @@ class _HomePageState extends State<HomePage> {
     );
   }
 }
-
