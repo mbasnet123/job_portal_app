@@ -33,17 +33,17 @@ class _RegisterState extends State<Register> {
     'JobSeeker',
   ];
   var _currentItemSelected = "Company";
-  var rool = "Company";
+  var role = "Company";
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.orange[900],
+      backgroundColor: Colors.cyan,
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
             Container(
-              color: Colors.orangeAccent[700],
+              color: Colors.cyanAccent,
               width: MediaQuery.of(context).size.width,
               height: MediaQuery.of(context).size.height,
               child: SingleChildScrollView(
@@ -55,10 +55,10 @@ class _RegisterState extends State<Register> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        SizedBox(
+                        const SizedBox(
                           height: 80,
                         ),
-                        Text(
+                        const Text(
                           "Register Now",
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
@@ -66,10 +66,10 @@ class _RegisterState extends State<Register> {
                             fontSize: 40,
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 10,
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 50,
                         ),
                         TextFormField(
@@ -105,7 +105,7 @@ class _RegisterState extends State<Register> {
                           onChanged: (value) {},
                           keyboardType: TextInputType.emailAddress,
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 20,
                         ),
                         TextFormField(
@@ -149,7 +149,7 @@ class _RegisterState extends State<Register> {
                           },
                           onChanged: (value) {},
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 20,
                         ),
                         TextFormField(
@@ -190,14 +190,14 @@ class _RegisterState extends State<Register> {
                           },
                           onChanged: (value) {},
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 20,
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Text(
-                              "Rool : ",
+                            const Text(
+                              "role : ",
                               style: TextStyle(
                                 fontSize: 20,
                                 fontWeight: FontWeight.bold,
@@ -215,7 +215,7 @@ class _RegisterState extends State<Register> {
                                   value: dropDownStringItem,
                                   child: Text(
                                     dropDownStringItem,
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                       color: Colors.white,
                                       fontWeight: FontWeight.bold,
                                       fontSize: 20,
@@ -226,14 +226,14 @@ class _RegisterState extends State<Register> {
                               onChanged: (newValueSelected) {
                                 setState(() {
                                   _currentItemSelected = newValueSelected!;
-                                  rool = newValueSelected;
+                                  role = newValueSelected;
                                 });
                               },
                               value: _currentItemSelected,
                             ),
                           ],
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 20,
                         ),
                         Row(
@@ -247,7 +247,7 @@ class _RegisterState extends State<Register> {
                               elevation: 5.0,
                               height: 40,
                               onPressed: () {
-                                CircularProgressIndicator();
+                                const CircularProgressIndicator();
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
@@ -255,16 +255,16 @@ class _RegisterState extends State<Register> {
                                   ),
                                 );
                               },
-                              child: Text(
+                              color: Colors.white,
+                              child: const Text(
                                 "Login",
                                 style: TextStyle(
                                   fontSize: 20,
                                 ),
                               ),
-                              color: Colors.white,
                             ),
                             MaterialButton(
-                              shape: RoundedRectangleBorder(
+                              shape: const RoundedRectangleBorder(
                                   borderRadius:
                                   BorderRadius.all(Radius.circular(20.0))),
                               elevation: 5.0,
@@ -274,28 +274,17 @@ class _RegisterState extends State<Register> {
                                   showProgress = true;
                                 });
                                 signUp(emailController.text,
-                                    passwordController.text, rool);
+                                    passwordController.text, role);
                               },
-                              child: Text(
+                              color: Colors.white,
+                              child: const Text(
                                 "Register",
                                 style: TextStyle(
                                   fontSize: 20,
                                 ),
                               ),
-                              color: Colors.white,
                             ),
                           ],
-                        ),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        Text(
-                          "WEBFUN",
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 30,
-                            color: Colors.yellowAccent[400],
-                          ),
                         ),
                       ],
                     ),
@@ -309,21 +298,21 @@ class _RegisterState extends State<Register> {
     );
   }
 
-  void signUp(String email, String password, String rool) async {
-    CircularProgressIndicator();
+  void signUp(String email, String password, String role) async {
+    const CircularProgressIndicator();
     if (_formkey.currentState!.validate()) {
       await _auth
           .createUserWithEmailAndPassword(email: email, password: password)
-          .then((value) => {postDetailsToFirestore(email, rool)})
+          .then((value) => {postDetailsToFirestore(email, role)})
           .catchError((e) {});
     }
   }
 
-  postDetailsToFirestore(String email, String rool) async {
+  postDetailsToFirestore(String email, String role) async {
     FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
     var user = _auth.currentUser;
     CollectionReference ref = FirebaseFirestore.instance.collection('users');
-    ref.doc(user!.uid).set({'email': emailController.text, 'rool': rool});
+    ref.doc(user!.uid).set({'email': emailController.text, 'role': role});
     Navigator.pushReplacement(
         context, MaterialPageRoute(builder: (context) => LoginPage()));
   }

@@ -27,22 +27,22 @@ class _LoginPageState extends State<LoginPage> {
         child: Column(
           children: <Widget>[
             Container(
-              color: Colors.orangeAccent[700],
+              color: Colors.cyan,
               width: MediaQuery.of(context).size.width,
               height: MediaQuery.of(context).size.height * 0.70,
               child: Center(
                 child: Container(
-                  margin: EdgeInsets.all(12),
+                  margin: const EdgeInsets.all(12),
                   child: Form(
                     key: _formkey,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        SizedBox(
+                        const SizedBox(
                           height: 30,
                         ),
-                        Text(
+                        const Text(
                           "Login",
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
@@ -50,7 +50,7 @@ class _LoginPageState extends State<LoginPage> {
                             fontSize: 40,
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 20,
                         ),
                         TextFormField(
@@ -88,7 +88,7 @@ class _LoginPageState extends State<LoginPage> {
                           },
                           keyboardType: TextInputType.emailAddress,
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 20,
                         ),
                         TextFormField(
@@ -136,11 +136,11 @@ class _LoginPageState extends State<LoginPage> {
                           keyboardType: TextInputType.emailAddress,
                         ),
 
-                        SizedBox(
+                        const SizedBox(
                           height: 20,
                         ),
                         MaterialButton(
-                          shape: RoundedRectangleBorder(
+                          shape: const RoundedRectangleBorder(
                               borderRadius:
                               BorderRadius.all(Radius.circular(20.0))),
                           elevation: 5.0,
@@ -152,15 +152,15 @@ class _LoginPageState extends State<LoginPage> {
                             signIn(
                                 emailController.text, passwordController.text);
                           },
-                          child: Text(
+                          color: Colors.white,
+                          child: const Text(
                             "Login",
                             style: TextStyle(
                               fontSize: 20,
                             ),
                           ),
-                          color: Colors.white,
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 10,
                         ),
                         Visibility(
@@ -169,7 +169,7 @@ class _LoginPageState extends State<LoginPage> {
                             maintainState: true,
                             visible: visible,
                             child: Container(
-                                child: CircularProgressIndicator(
+                                child: const CircularProgressIndicator(
                                   color: Colors.white,
                                 ))),
                       ],
@@ -186,11 +186,11 @@ class _LoginPageState extends State<LoginPage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                     MaterialButton(
-                      shape: RoundedRectangleBorder(
+                      shape: const RoundedRectangleBorder(
                         borderRadius: BorderRadius.all(
                           Radius.circular(20.0),
                         ),
@@ -206,47 +206,13 @@ class _LoginPageState extends State<LoginPage> {
                         );
                       },
                       color: Colors.blue[900],
-                      child: Text(
+                      child: const Text(
                         "Register Now",
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 20,
                         ),
                       ),
-                    ),
-                    SizedBox(
-                      height: 15,
-                    ),
-                    Text(
-                      "Made by",
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 40,
-                      ),
-                    ),
-                    SizedBox(
-                      height: 5,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          "WEB",
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 30,
-                            color: Colors.blue[900],
-                          ),
-                        ),
-                        Text(
-                          "FUN",
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 30,
-                            color: Colors.yellowAccent[400],
-                          ),
-                        ),
-                      ],
                     ),
                   ],
                 ),
@@ -266,7 +232,7 @@ class _LoginPageState extends State<LoginPage> {
         .get()
         .then((DocumentSnapshot documentSnapshot) {
       if (documentSnapshot.exists) {
-        if (documentSnapshot.get('rool') == "Teacher") {
+        if (documentSnapshot.get('role') == "Company") {
           Navigator.pushReplacement(
             context,
             MaterialPageRoute(
@@ -306,5 +272,4 @@ class _LoginPageState extends State<LoginPage> {
     }
   }
 }
-
 

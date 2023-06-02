@@ -31,7 +31,7 @@ class _JobSeekerAuthState extends State<JobSeekerAuth> {
   }
 
   Future<void> logout(BuildContext context) async {
-    CircularProgressIndicator();
+    const CircularProgressIndicator();
     await FirebaseAuth.instance.signOut();
     Navigator.pushReplacement(
       context,
@@ -40,4 +40,4 @@ class _JobSeekerAuthState extends State<JobSeekerAuth> {
       ),
     );
   }
-  }
+}

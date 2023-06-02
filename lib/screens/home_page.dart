@@ -4,12 +4,15 @@ import 'package:job_portal_app/screens/company_authentication.dart';
 import 'package:job_portal_app/screens/job_seeker_authentication.dart';
 import 'package:job_portal_app/screens/login_page.dart';
 import 'package:job_portal_app/screens/my_drawer_header.dart';
+import 'package:job_portal_app/screens/register.dart';
 import 'package:job_portal_app/screens/register_page.dart';
 import 'package:job_portal_app/widgets/register_interface.dart';
 import 'package:job_portal_app/widgets/bottom_navigation_bar_interface.dart';
-
 import '../components/companies.dart';
 import '../components/company_vertical.dart';
+import 'package:job_portal_app/screens/search_page.dart';
+
+import '../models/job_model.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -24,8 +27,7 @@ class _HomePageState extends State<HomePage> {
     final size = MediaQuery.of(context).size;
     return Scaffold(
       drawer: SafeArea(
-        child: Drawer(
-          backgroundColor: Colors.white,
+        child: Drawer(backgroundColor: Colors.white,
           child: SingleChildScrollView(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
@@ -50,12 +52,12 @@ class _HomePageState extends State<HomePage> {
         }),
         title: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 4),
-          child: TextFormField(
-            decoration: const InputDecoration(
-              border: InputBorder.none,
-              hintText: "Search Jobs",
-              prefixIcon: Icon(Icons.search),
-            ),
+          child: InkWell(
+            onTap: () {
+              Navigator.push(context, MaterialPageRoute(builder: (_) => SearchPage()));
+            },
+            child: Container
+              (child: Text("Search Here", style: TextStyle(color: Colors.black),),),
           ),
         ),
         // automaticallyImplyLeading: false,
@@ -131,7 +133,8 @@ class _HomePageState extends State<HomePage> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => const CompanyAuth()),
+                              builder: (context) => Register(),
+                          ),
                         );
                       },
                       style: ElevatedButton.styleFrom(
@@ -148,7 +151,7 @@ class _HomePageState extends State<HomePage> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => const JobSeekerAuth(),
+                            builder: (context) => Register(),
                           ),
                         );
                       },
@@ -262,3 +265,4 @@ class _HomePageState extends State<HomePage> {
     );
   }
 }
+
