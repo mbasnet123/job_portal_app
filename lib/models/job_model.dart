@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:job_portal_app/screens/company_authentication.dart';
 class JobModel{
   String? id;
   String? companyName;
@@ -25,7 +26,7 @@ class JobModel{
 }
 
 List<JobModel> job_list = [
-  JobModel(companyName: "Esewa", position: "Manager", salary: "40000", id: '1'),
+  JobModel(companyName: "", position: "Manager", salary: "40000", id: '1'),
   JobModel(companyName: "Nabil Bank", position: "Operations Head", salary: "50000", id: '2'),
   JobModel(companyName: "Manish Bank", position: "Marketing head", salary: "60000", id: '3'),
   JobModel(companyName: "Oyo", position: "Customer Service", salary: "30000", id: '4'),

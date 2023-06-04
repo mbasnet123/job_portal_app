@@ -49,9 +49,12 @@ class _CompanyAuthState extends State<CompanyAuth> {
           children: [
             TextFormField(
               controller: _positionController,
-              decoration: const InputDecoration(
-                border: OutlineInputBorder(),
+              decoration: InputDecoration(
+                border: const OutlineInputBorder(),
                 hintText: "position",
+                suffixIcon: IconButton(onPressed: (){
+                  _positionController.clear();
+                }, icon: const Icon(Icons.clear),),
               ),
             ),
             const SizedBox(
@@ -59,9 +62,12 @@ class _CompanyAuthState extends State<CompanyAuth> {
             ),
             TextFormField(
               controller: _companyNameController,
-              decoration: const InputDecoration(
-                border: OutlineInputBorder(),
+              decoration: InputDecoration(
+                border: const OutlineInputBorder(),
                 hintText: "company",
+                suffixIcon: IconButton(onPressed: (){
+                  _companyNameController.clear();
+                }, icon: const Icon(Icons.clear),),
               ),
             ),
             const SizedBox(
@@ -69,9 +75,12 @@ class _CompanyAuthState extends State<CompanyAuth> {
             ),
             TextFormField(
               controller: _salaryController,
-              decoration: const InputDecoration(
-                border: OutlineInputBorder(),
+              decoration: InputDecoration(
+                border: const OutlineInputBorder(),
                 hintText: "salary",
+                suffixIcon: IconButton(onPressed: (){
+                  _salaryController.clear();
+                }, icon: const Icon(Icons.clear),),
               ),
             ),
             const SizedBox(
@@ -142,6 +151,23 @@ class _CompanyAuthState extends State<CompanyAuth> {
                               child: Container(
                                 margin: const EdgeInsets.symmetric(vertical: 6),
                                 child: ListTile(
+                                  onLongPress: (){
+                                    showDialog(context: context, builder: (context){
+                                      return AlertDialog(
+                                        title: const Text("Delete"),
+                                        content: const Text("are you sure you want to delete"),
+                                        actions: [
+                                          ElevatedButton(
+                                              onPressed: (){
+                                                FirestoreHelper.delete(singleJob).then((value) {
+                                                  Navigator.pop(context);
+                                                });
+                                              },
+                                              child: const Text("Delete")),
+                                        ],
+                                      );
+                                    });
+                                  },
                                   leading: Container(
                                     width: 35,
                                     height: 35,

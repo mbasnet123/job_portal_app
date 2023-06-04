@@ -1,6 +1,11 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:job_portal_app/screens/applies_page.dart';
 
+import '../models/firestore_helper.dart';
+import '../models/job_model.dart';
+import '../widgets/edit_page.dart';
 import 'login.dart';
 
 class JobSeekerAuth extends StatefulWidget {
@@ -27,6 +32,104 @@ class _JobSeekerAuthState extends State<JobSeekerAuth> {
           )
         ],
       ),
+      body: Padding(
+        padding: EdgeInsets.all(18),
+        child: Column(
+          children: [
+            StreamBuilder<List<JobModel>>(
+                stream: FirestoreHelper.read(),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  }
+                  if (snapshot.hasError) {
+                    return const Center(
+                      child: Text("some error occurred"),
+                    );
+                  }
+                  if (snapshot.hasData) {
+                    final jobData = snapshot.data;
+                    return Expanded(
+                      child: ListView.builder(
+                          itemCount: jobData!.length,
+                          itemBuilder: (context, index) {
+                            final singleJob = jobData[index];
+                            return SingleChildScrollView(
+                              child: Container(
+                                margin: const EdgeInsets.symmetric(vertical: 6),
+                                child: ListTile(
+                                  // onLongPress: (){
+                                  //   showDialog(context: context, builder: (context){
+                                  //     return AlertDialog(
+                                  //       title: const Text("Delete"),
+                                  //       content: const Text("are you sure you want to delete"),
+                                  //       actions: [
+                                  //         ElevatedButton(
+                                  //             onPressed: (){
+                                  //               FirestoreHelper.delete(singleJob).then((value) {
+                                  //                 Navigator.pop(context);
+                                  //               });
+                                  //             },
+                                  //             child: const Text("Delete")),
+                                  //       ],
+                                  //     );
+                                  //   });
+                                  // },
+                                  leading: Container(
+                                    width: 35,
+                                    height: 35,
+                                    decoration: const BoxDecoration(
+                                        color: Colors.lime,
+                                        shape: BoxShape.circle),
+                                  ),
+                                  title: Text("${singleJob.companyName}"),
+                                  subtitle: Row(
+                                    mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text("${singleJob.position}"),
+                                      Text("${singleJob.salary}"),
+                                    ],
+                                  ),
+                                  trailing: TextButton(child: Text("Apply"),onPressed: (){
+                                    Navigator.push(context, MaterialPageRoute(builder: (context) => AppliesPage(),));
+                                    // showDialog(context: context, builder: (context){
+                                    //   return AlertDialog(
+                                    //     title: const Text("Apply to the job"),
+                                    //     // content: const Text("are you sure you want to delete"),
+                                    //     actions: [
+                                    //       Column(
+                                    //         children: [
+                                    //
+                                    //           ElevatedButton(
+                                    //               onPressed: (){
+                                    //                 // FirestoreHelper.delete(singleJob).then((value) {
+                                    //                 //   Navigator.pop(context);
+                                    //                 // });
+                                    //                 _apply();
+                                    //               },
+                                    //               child: const Text("Apply")),
+                                    //         ],
+                                    //       ),
+                                    //     ],
+                                    //   );
+                                    // });
+                                  }),
+                                ),
+                              ),
+                            );
+                          }),
+                    );
+                  }
+                  return const Center(
+                    child: CircularProgressIndicator(),
+                  );
+                })
+          ],
+        ),
+      ),
     );
   }
 
@@ -40,4 +143,15 @@ class _JobSeekerAuthState extends State<JobSeekerAuth> {
       ),
     );
   }
+
+//   Future _apply() async{
+//     final applyCollection = FirebaseFirestore.instance.collection("applies");
+//
+//     final docRef = applyCollection.doc("apply-id");
+//
+//     await docRef.set({
+//       "experience": 2,
+//       "education": "masters",
+//     });
+// }
 }

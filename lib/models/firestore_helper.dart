@@ -48,6 +48,12 @@ class FirestoreHelper {
     }
   }
 
+  static Future delete(JobModel job) async{
+    final jobCollection = FirebaseFirestore.instance.collection("jobs");
+
+    final docRed = jobCollection.doc(job.id).delete();
+  }
+
 // static Future update() async {
 //   final jobCollection = FirebaseFirestore.instance.collection("jobs");
 //
