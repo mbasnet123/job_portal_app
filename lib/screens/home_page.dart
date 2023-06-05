@@ -171,71 +171,71 @@ class _HomePageState extends State<HomePage> {
                 height: 10,
               ),
               const Divider(
-                color: Colors.grey,
+                // color: Colors.grey,
                 thickness: 8,
               ),
-              Center(
-                child: SizedBox(
-                  height: 80,
-                  width: 80,
-                  child: Image.asset("assets/images/magnifying-glass.jpg"),
-                ),
-              ),
-              const Center(
-                child: Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: Text(
-                    "Get your dream job",
-                    style: TextStyle(
-                      fontSize: 20,
-                    ),
-                  ),
-                ),
-              ),
-              const TextField(
-                decoration: InputDecoration(
-                  border: InputBorder.none,
-                  hintText: "Enter skills",
-                  hintStyle: TextStyle(
-                    fontSize: 25,
-                    color: Colors.brown,
-                  ),
-                ),
-              ),
-              const Divider(
-                thickness: 3,
-              ),
-              const TextField(
-                decoration: InputDecoration(
-                  border: InputBorder.none,
-                  hintText: "Enter Location",
-                  hintStyle: TextStyle(
-                    fontSize: 25,
-                    color: Colors.brown,
-                  ),
-                ),
-              ),
-              const Divider(
-                thickness: 3,
-              ),
-              const SizedBox(
-                height: 15,
-              ),
-              Center(
-                child: ElevatedButton(
-                  onPressed: () {},
-                  style: ElevatedButton.styleFrom(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(15),
-                    ),
-                  ),
-                  child: const Text("Search Jobs"),
-                ),
-              ),
-              Divider(
-                thickness: 8,
-                color: Colors.grey.shade100,
-              ),
+              // Center(
+              //   child: SizedBox(
+              //     height: 80,
+              //     width: 80,
+              //     child: Image.asset("assets/images/magnifying-glass.jpg"),
+              //   ),
+              // ),
+              // const Center(
+              //   child: Padding(
+              //     padding: EdgeInsets.all(8.0),
+              //     child: Text(
+              //       "Get your dream job",
+              //       style: TextStyle(
+              //         fontSize: 20,
+              //       ),
+              //     ),
+              //   ),
+              // ),
+              // const TextField(
+              //   decoration: InputDecoration(
+              //     border: InputBorder.none,
+              //     hintText: "Enter skills",
+              //     hintStyle: TextStyle(
+              //       fontSize: 25,
+              //       color: Colors.brown,
+              //     ),
+              //   ),
+              // ),
+              // const Divider(
+              //   thickness: 3,
+              // ),
+              // const TextField(
+              //   decoration: InputDecoration(
+              //     border: InputBorder.none,
+              //     hintText: "Enter Location",
+              //     hintStyle: TextStyle(
+              //       fontSize: 25,
+              //       color: Colors.brown,
+              //     ),
+              //   ),
+              // ),
+              // const Divider(
+              //   thickness: 3,
+              // ),
+              // const SizedBox(
+              //   height: 15,
+              // ),
+              // Center(
+              //   child: ElevatedButton(
+              //     onPressed: () {},
+              //     style: ElevatedButton.styleFrom(
+              //       shape: RoundedRectangleBorder(
+              //         borderRadius: BorderRadius.circular(15),
+              //       ),
+              //     ),
+              //     child: const Text("Search Jobs"),
+              //   ),
+              // ),
+              // Divider(
+              //   thickness: 8,
+              //   color: Colors.grey.shade100,
+              // ),
               Row(
                 children: [
                   const Text(

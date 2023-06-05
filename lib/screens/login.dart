@@ -1,11 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:job_portal_app/screens/home_page.dart';
 import 'company_authentication.dart';
 import 'job_seeker_authentication.dart';
 import 'register.dart';
-
-
 
 class LoginPage extends StatefulWidget {
   @override
@@ -20,9 +19,29 @@ class _LoginPageState extends State<LoginPage> {
   final TextEditingController passwordController = new TextEditingController();
 
   final _auth = FirebaseAuth.instance;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.cyan,
+        elevation: 0,
+        leading: IconButton(
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const HomePage(),
+              ),
+            );
+          },
+          icon: const Icon(
+            Icons.arrow_back,
+            color: Colors.white,
+            size: 35,
+          ),
+        ),
+      ),
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
@@ -76,7 +95,7 @@ class _LoginPageState extends State<LoginPage> {
                               return "Email cannot be empty";
                             }
                             if (!RegExp(
-                                "^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]")
+                                    "^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]")
                                 .hasMatch(value)) {
                               return ("Please enter a valid email");
                             } else {
@@ -135,14 +154,13 @@ class _LoginPageState extends State<LoginPage> {
                           },
                           keyboardType: TextInputType.emailAddress,
                         ),
-
                         const SizedBox(
                           height: 20,
                         ),
                         MaterialButton(
                           shape: const RoundedRectangleBorder(
                               borderRadius:
-                              BorderRadius.all(Radius.circular(20.0))),
+                                  BorderRadius.all(Radius.circular(20.0))),
                           elevation: 5.0,
                           height: 40,
                           onPressed: () {
@@ -170,8 +188,8 @@ class _LoginPageState extends State<LoginPage> {
                             visible: visible,
                             child: Container(
                                 child: const CircularProgressIndicator(
-                                  color: Colors.white,
-                                ))),
+                              color: Colors.white,
+                            ))),
                       ],
                     ),
                   ),
@@ -236,14 +254,14 @@ class _LoginPageState extends State<LoginPage> {
           Navigator.pushReplacement(
             context,
             MaterialPageRoute(
-              builder: (context) =>  CompanyAuth(),
+              builder: (context) => CompanyAuth(),
             ),
           );
-        }else{
+        } else {
           Navigator.pushReplacement(
             context,
             MaterialPageRoute(
-              builder: (context) =>  JobSeekerAuth(),
+              builder: (context) => JobSeekerAuth(),
             ),
           );
         }
@@ -257,7 +275,7 @@ class _LoginPageState extends State<LoginPage> {
     if (_formkey.currentState!.validate()) {
       try {
         UserCredential userCredential =
-        await FirebaseAuth.instance.signInWithEmailAndPassword(
+            await FirebaseAuth.instance.signInWithEmailAndPassword(
           email: email,
           password: password,
         );
@@ -272,4 +290,3 @@ class _LoginPageState extends State<LoginPage> {
     }
   }
 }
-

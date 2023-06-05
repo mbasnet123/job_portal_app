@@ -1,13 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:job_portal_app/models/company_vertical.dart';
 
-class CompanyVertical extends StatelessWidget {
+class CompanyVertical extends StatefulWidget {
   const CompanyVertical({Key? key}) : super(key: key);
 
+  @override
+  State<CompanyVertical> createState() => _CompanyVerticalState();
+}
+
+class _CompanyVerticalState extends State<CompanyVertical> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
+      appBar: AppBar(
+          backgroundColor: Colors.white,
+          elevation: 0,
+          leading: IconButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            icon: const Icon(Icons.arrow_back, color: Colors.blue,
+            size: 35),
+          )),
       body: SingleChildScrollView(
         scrollDirection: Axis.vertical,
         child: Column(
@@ -43,54 +58,95 @@ class VerticalTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(children: [
-      Padding(
-        padding: const EdgeInsets.symmetric(vertical: 30),
-        child: SizedBox(
-          width: double.infinity,
-          height: 150,
-          child: Card(
-            elevation: 10,
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.only(top: 8.0),
-                  child: ListTile(
-                    leading: Image.asset(image,
-                    height: 70,
-                    width: 70,),
-                    title: Text(title),
-                    subtitle: Row(
-                      children: [
-                        const Icon(Icons.star),
-                        Text(reviews),
-                        const SizedBox(
-                          width: 10,
-                        ),
-                        Text(totalReviews),
-                      ],
+      SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 8),
+          child: SizedBox(
+            width: double.infinity,
+            height: 150,
+            child: Card(
+              elevation: 10,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.only(top: 8.0),
+                    child: ListTile(
+                      onTap: () {
+                        _tripEditModalBottomSheet(context);
+                      },
+                      leading: Image.asset(
+                        image,
+                        height: 70,
+                        width: 70,
+                      ),
+                      title: Text(title),
+                      subtitle: Row(
+                        children: [
+                          const Icon(Icons.star),
+                          Text(reviews),
+                          const SizedBox(
+                            width: 10,
+                          ),
+                          Text(totalReviews),
+                        ],
+                      ),
+                      // trailing: const Icon(Icons.arrow_forward_ios_rounded),
                     ),
-                    trailing: const Icon(Icons.arrow_forward_ios_rounded),
                   ),
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    TextButton(
-                      onPressed: () {},
-                      child: Text(text1),
-                    ),
-                    TextButton(
-                      onPressed: () {},
-                      child: Text(text2),
-                    ),
-                  ],
-                ),
-              ],
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      TextButton(
+                        onPressed: () {},
+                        child: Text(text1),
+                      ),
+                      TextButton(
+                        onPressed: () {},
+                        child: Text(text2),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
           ),
         ),
       ),
     ]);
+  }
+
+  void _tripEditModalBottomSheet(context) {
+    showModalBottomSheet(
+        context: context,
+        builder: (BuildContext context) {
+          return SizedBox(
+            height: 400,
+            child: Padding(
+              padding: const EdgeInsets.only(top: 15),
+              child: Column(
+                children: [
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        title,
+                        style:
+                            const TextStyle(fontSize: 25, color: Colors.black),
+                      ),
+                      IconButton(
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        icon: const Icon(Icons.cancel),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          );
+        });
   }
 }

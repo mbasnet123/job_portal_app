@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:job_portal_app/screens/home_page.dart';
 import 'login.dart';
 // import 'model.dart';
 
@@ -21,7 +22,7 @@ class _RegisterState extends State<Register> {
 
   final TextEditingController passwordController = new TextEditingController();
   final TextEditingController confirmpassController =
-  new TextEditingController();
+      new TextEditingController();
   final TextEditingController name = new TextEditingController();
   final TextEditingController emailController = new TextEditingController();
   final TextEditingController mobile = new TextEditingController();
@@ -38,12 +39,31 @@ class _RegisterState extends State<Register> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.cyan,
+        elevation: 0,
+        leading: IconButton(
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const HomePage(),
+              ),
+            );
+          },
+          icon: const Icon(
+            Icons.arrow_back,
+            color: Colors.white,
+            size: 35,
+          ),
+        ),
+      ),
       backgroundColor: Colors.cyan,
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
             Container(
-              color: Colors.cyanAccent,
+              color: Colors.cyan,
               width: MediaQuery.of(context).size.width,
               height: MediaQuery.of(context).size.height,
               child: SingleChildScrollView(
@@ -95,7 +115,7 @@ class _RegisterState extends State<Register> {
                               return "Email cannot be empty";
                             }
                             if (!RegExp(
-                                "^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]")
+                                    "^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]")
                                 .hasMatch(value)) {
                               return ("Please enter a valid email");
                             } else {
@@ -243,7 +263,7 @@ class _RegisterState extends State<Register> {
                             MaterialButton(
                               shape: RoundedRectangleBorder(
                                   borderRadius:
-                                  BorderRadius.all(Radius.circular(20.0))),
+                                      BorderRadius.all(Radius.circular(20.0))),
                               elevation: 5.0,
                               height: 40,
                               onPressed: () {
@@ -266,7 +286,7 @@ class _RegisterState extends State<Register> {
                             MaterialButton(
                               shape: const RoundedRectangleBorder(
                                   borderRadius:
-                                  BorderRadius.all(Radius.circular(20.0))),
+                                      BorderRadius.all(Radius.circular(20.0))),
                               elevation: 5.0,
                               height: 40,
                               onPressed: () {
