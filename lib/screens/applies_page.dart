@@ -29,9 +29,10 @@ class _AppliesPageState extends State<AppliesPage> {
           children: [
             TextFormField(
               controller: _experienceController,
+              keyboardType: TextInputType.number,
               decoration: InputDecoration(
                 border: const OutlineInputBorder(),
-                hintText: "experience",
+                hintText: "experience(in years)",
                 suffixIcon: IconButton(onPressed: (){
                   _experienceController.clear();
                 },

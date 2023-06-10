@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:job_portal_app/screens/about_page.dart';
 
 class MyDrawerHeader extends StatelessWidget {
   const MyDrawerHeader({Key? key}) : super(key: key);
@@ -66,7 +67,11 @@ class MyDrawerHeader extends StatelessWidget {
             ),
           ),
           TextButton.icon(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context){
+                return AboutPage();
+              }));
+            },
             icon: const Icon(Icons.info),
             label: const Text("About us"),
             style: TextButton.styleFrom(

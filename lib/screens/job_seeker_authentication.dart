@@ -87,36 +87,43 @@ class _JobSeekerAuthState extends State<JobSeekerAuth> {
                                   title: Text("${singleJob.companyName}"),
                                   subtitle: Row(
                                     mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
+                                        MainAxisAlignment.spaceBetween,
                                     children: [
                                       Text("${singleJob.position}"),
                                       Text("${singleJob.salary}"),
                                     ],
                                   ),
-                                  trailing: TextButton(child: Text("Apply"),onPressed: (){
-                                    Navigator.push(context, MaterialPageRoute(builder: (context) => AppliesPage(),));
-                                    // showDialog(context: context, builder: (context){
-                                    //   return AlertDialog(
-                                    //     title: const Text("Apply to the job"),
-                                    //     // content: const Text("are you sure you want to delete"),
-                                    //     actions: [
-                                    //       Column(
-                                    //         children: [
-                                    //
-                                    //           ElevatedButton(
-                                    //               onPressed: (){
-                                    //                 // FirestoreHelper.delete(singleJob).then((value) {
-                                    //                 //   Navigator.pop(context);
-                                    //                 // });
-                                    //                 _apply();
-                                    //               },
-                                    //               child: const Text("Apply")),
-                                    //         ],
-                                    //       ),
-                                    //     ],
-                                    //   );
-                                    // });
-                                  }),
+                                  trailing: TextButton(
+                                      child: Text("Apply"),
+                                      onPressed: () {
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: (context) =>
+                                                  AppliesPage(),
+                                            ));
+                                        // showDialog(context: context, builder: (context){
+                                        //   return AlertDialog(
+                                        //     title: const Text("Apply to the job"),
+                                        //     // content: const Text("are you sure you want to delete"),
+                                        //     actions: [
+                                        //       Column(
+                                        //         children: [
+                                        //
+                                        //           ElevatedButton(
+                                        //               onPressed: (){
+                                        //                 // FirestoreHelper.delete(singleJob).then((value) {
+                                        //                 //   Navigator.pop(context);
+                                        //                 // });
+                                        //                 _apply();
+                                        //               },
+                                        //               child: const Text("Apply")),
+                                        //         ],
+                                        //       ),
+                                        //     ],
+                                        //   );
+                                        // });
+                                      }),
                                 ),
                               ),
                             );

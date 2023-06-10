@@ -8,10 +8,12 @@ class BottomNavigationBarInterface extends StatefulWidget {
   const BottomNavigationBarInterface({Key? key}) : super(key: key);
 
   @override
-  State<BottomNavigationBarInterface> createState() => _BottomNavigationBarInterfaceState();
+  State<BottomNavigationBarInterface> createState() =>
+      _BottomNavigationBarInterfaceState();
 }
 
-class _BottomNavigationBarInterfaceState extends State<BottomNavigationBarInterface> {
+class _BottomNavigationBarInterfaceState
+    extends State<BottomNavigationBarInterface> {
   List pages = [
     const HomePage(),
     const AppliesPage(),
@@ -20,16 +22,18 @@ class _BottomNavigationBarInterfaceState extends State<BottomNavigationBarInterf
   ];
 
   int currentIndex = 0;
-  void onTap(int index){
+  void onTap(int index) {
     setState(() {
       currentIndex = index;
     });
   }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: pages[currentIndex], bottomNavigationBar:
-     BottomNavigationBar(
-      onTap: onTap,
+    return Scaffold(
+      body: pages[currentIndex],
+      bottomNavigationBar: BottomNavigationBar(
+        onTap: onTap,
         unselectedFontSize: 0,
         selectedFontSize: 0,
         type: BottomNavigationBarType.fixed,
@@ -42,30 +46,35 @@ class _BottomNavigationBarInterfaceState extends State<BottomNavigationBarInterf
         elevation: 0,
         items: const [
           BottomNavigationBarItem(
-            icon: Icon(Icons.home,),
+            icon: Icon(
+              Icons.home,
+            ),
             label: "Home",
             backgroundColor: Colors.blueAccent,
           ),
-
           BottomNavigationBarItem(
-            icon: Icon(Icons.work_history,),
+            icon: Icon(
+              Icons.work_history,
+            ),
             label: "Applies",
             backgroundColor: Colors.blueAccent,
           ),
-
           BottomNavigationBarItem(
-            icon: Icon(Icons.inbox,),
+            icon: Icon(
+              Icons.inbox,
+            ),
             label: "Inbox",
             backgroundColor: Colors.blueAccent,
           ),
-
           BottomNavigationBarItem(
-            icon: Icon(Icons.verified_user,),
+            icon: Icon(
+              Icons.verified_user,
+            ),
             label: "Profile",
             backgroundColor: Colors.blueAccent,
           ),
         ],
-
-      ),);
+      ),
+    );
   }
 }

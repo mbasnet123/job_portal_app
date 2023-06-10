@@ -27,7 +27,8 @@ class _HomePageState extends State<HomePage> {
     final size = MediaQuery.of(context).size;
     return Scaffold(
       drawer: SafeArea(
-        child: Drawer(backgroundColor: Colors.white,
+        child: Drawer(
+          backgroundColor: Colors.white,
           child: SingleChildScrollView(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
@@ -54,10 +55,15 @@ class _HomePageState extends State<HomePage> {
           padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 4),
           child: InkWell(
             onTap: () {
-              Navigator.push(context, MaterialPageRoute(builder: (_) => SearchPage()));
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (_) => SearchPage()));
             },
-            child: Container
-              (child: Text("Search Here", style: TextStyle(color: Colors.black),),),
+            child: Container(
+              child: Text(
+                "Search Here",
+                style: TextStyle(color: Colors.black),
+              ),
+            ),
           ),
         ),
         // automaticallyImplyLeading: false,
@@ -133,7 +139,7 @@ class _HomePageState extends State<HomePage> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => Register(),
+                            builder: (context) => Register(),
                           ),
                         );
                       },
@@ -145,7 +151,6 @@ class _HomePageState extends State<HomePage> {
                       ),
                       child: const Text("Company"),
                     ),
-
                     ElevatedButton(
                       onPressed: () {
                         Navigator.push(
@@ -265,4 +270,3 @@ class _HomePageState extends State<HomePage> {
     );
   }
 }
-

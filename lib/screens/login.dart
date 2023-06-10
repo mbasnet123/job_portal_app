@@ -5,6 +5,7 @@ import 'package:job_portal_app/screens/home_page.dart';
 import 'company_authentication.dart';
 import 'job_seeker_authentication.dart';
 import 'register.dart';
+import 'package:job_portal_app/widgets/reset_password.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -190,6 +191,21 @@ class _LoginPageState extends State<LoginPage> {
                                 child: const CircularProgressIndicator(
                               color: Colors.white,
                             ))),
+                        TextButton(
+                          onPressed: () => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => ResetScreen(),
+                            ),
+                          ),
+                          child: Text(
+                            "Forget Password?",
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 20,
+                            ),
+                          ),
+                        ),
                       ],
                     ),
                   ),

@@ -75,6 +75,7 @@ class _CompanyAuthState extends State<CompanyAuth> {
             ),
             TextFormField(
               controller: _salaryController,
+              keyboardType: TextInputType.number,
               decoration: InputDecoration(
                 border: const OutlineInputBorder(),
                 hintText: "salary",
@@ -95,6 +96,9 @@ class _CompanyAuthState extends State<CompanyAuth> {
                       salary: _salaryController.text,
                       id: ''),
                 );
+                _salaryController.clear();
+                _positionController.clear();
+                _companyNameController.clear();
                 // _add();
               },
               child: Container(

@@ -1,3 +1,4 @@
+import 'firestore_helper.dart';
 class CompanyVertical{
   final String image, title, reviews, totalReviews, text1, text2;
 
