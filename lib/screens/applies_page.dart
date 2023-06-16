@@ -36,7 +36,7 @@ class _AppliesPageState extends State<AppliesPage> {
                 suffixIcon: IconButton(onPressed: (){
                   _experienceController.clear();
                 },
-                    icon: const Icon(Icons.clear),)
+                    icon: const Icon(Icons.clear),),
               ),
             ),
             const SizedBox(height: 10,),
@@ -51,6 +51,8 @@ class _AppliesPageState extends State<AppliesPage> {
               ),
             ),
             const SizedBox(height: 10,),
+            ElevatedButton(onPressed: (){},
+                child: const Text("Upload CV"),),
             ElevatedButton(onPressed: (){
               _apply();
             }, child: const Text("Apply"),),

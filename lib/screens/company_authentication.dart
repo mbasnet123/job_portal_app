@@ -110,9 +110,9 @@ class _CompanyAuthState extends State<CompanyAuth> {
                   ),
                   color: Colors.cyanAccent,
                 ),
-                child: Row(
+                child: const Row(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: const [
+                  children: [
                     Icon(
                       Icons.add,
                       color: Colors.white,
@@ -185,7 +185,13 @@ class _CompanyAuthState extends State<CompanyAuth> {
                                         MainAxisAlignment.spaceBetween,
                                     children: [
                                       Text("${singleJob.position}"),
-                                      Text("${singleJob.salary}"),
+                                      Row(
+                                        mainAxisAlignment: MainAxisAlignment.end,
+                                        children: [
+                                          Text("\$"),
+                                          Text("${singleJob.salary}"),
+                                        ],
+                                      )
                                     ],
                                   ),
                                   trailing: InkWell(
