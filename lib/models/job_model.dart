@@ -17,6 +17,8 @@ class JobModel{
         salary: snapshot["salary"],);
   }
 
+  Object? get jobId => null;
+
   Map<String, dynamic> toJson() => {
     "id": id,
     "companyName": companyName,

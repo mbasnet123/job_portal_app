@@ -5,8 +5,8 @@ class InboxPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: const [
+    return const Column(
+      children: [
         Padding(
           padding: EdgeInsets.all(28.0),
           child: Text(

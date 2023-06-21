@@ -21,7 +21,74 @@ class CompanyVertical extends StatefulWidget {
 class _CompanyVerticalState extends State<CompanyVertical> {
   @override
   Widget build(BuildContext context) {
-    return CompanyList();
+    return SizedBox(
+      height: 300,
+      child: Scaffold(
+        body: Padding(
+          padding: EdgeInsets.all(18),
+          child: Column(
+            children: [
+              StreamBuilder<List<JobModel>>(
+                  stream: FirestoreHelper.read(),
+                  builder: (context, snapshot) {
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      return const Center(
+                        child: CircularProgressIndicator(),
+                      );
+                    }
+                    if (snapshot.hasError) {
+                      return const Center(
+                        child: Text("some error occurred"),
+                      );
+                    }
+                    if (snapshot.hasData) {
+                      final jobData = snapshot.data;
+                      return Expanded(
+                        child: ListView.builder(
+                            itemCount: jobData!.length,
+                            itemBuilder: (context, index) {
+                              final singleJob = jobData?[index];
+                              return SingleChildScrollView(
+                                child: Container(
+                                  margin: const EdgeInsets.symmetric(vertical: 6),
+                                  child: ListTile(
+                                    leading: Container(
+                                      width: 35,
+                                      height: 35,
+                                      decoration: const BoxDecoration(
+                                          color: Colors.lime,
+                                          shape: BoxShape.circle),
+                                    ),
+                                    title: Text("${singleJob?.companyName}"),
+                                    subtitle: Row(
+                                      mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text("${singleJob?.position}"),
+                                        Row(
+                                          mainAxisAlignment: MainAxisAlignment.end,
+                                          children: [
+                                            Text("\$"),
+                                            Text("${singleJob?.salary}"),
+                                          ],
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              );
+                            }),
+                      );
+                    }
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  })
+            ],
+          ),
+        ),
+      ),
+    );
   }
 }
 

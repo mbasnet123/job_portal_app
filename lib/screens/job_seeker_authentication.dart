@@ -16,6 +16,8 @@ class JobSeekerAuth extends StatefulWidget {
 }
 
 class _JobSeekerAuthState extends State<JobSeekerAuth> {
+  List<String> appliedJobIds = [];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,6 +38,7 @@ class _JobSeekerAuthState extends State<JobSeekerAuth> {
         padding: EdgeInsets.all(18),
         child: Column(
           children: [
+            Text("Jobs"),
             StreamBuilder<List<JobModel>>(
                 stream: FirestoreHelper.read(),
                 builder: (context, snapshot) {
@@ -56,52 +59,88 @@ class _JobSeekerAuthState extends State<JobSeekerAuth> {
                           itemCount: jobData!.length,
                           itemBuilder: (context, index) {
                             final singleJob = jobData[index];
-                            return SingleChildScrollView(
-                              child: Container(
-                                margin: const EdgeInsets.symmetric(vertical: 6),
-                                child: ListTile(
-                                  leading: Container(
-                                    width: 35,
-                                    height: 35,
-                                    decoration: const BoxDecoration(
-                                        color: Colors.lime,
-                                        shape: BoxShape.circle),
+                            if (appliedJobIds.contains(singleJob.jobId)) {
+                              return Container();
+                            } else {
+                              return SingleChildScrollView(
+                                child: Container(
+                                  margin:
+                                      const EdgeInsets.symmetric(vertical: 6),
+                                  child: ListTile(
+                                    leading: Container(
+                                      width: 35,
+                                      height: 35,
+                                      decoration: const BoxDecoration(
+                                          color: Colors.lime,
+                                          shape: BoxShape.circle),
+                                    ),
+                                    title: Text("${singleJob.companyName}"),
+                                    subtitle: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text("${singleJob.position}"),
+                                        Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.end,
+                                          children: [
+                                            Text("\$"),
+                                            Text("${singleJob.salary}"),
+                                          ],
+                                        )
+                                      ],
+                                    ),
+                                    trailing: TextButton(
+                                        child: Text("Apply"),
+                                        onPressed: () {
+                                          Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                builder: (context) =>
+                                                    AppliesPage(),
+                                              ));
+                                        }),
                                   ),
-                                  title: Text("${singleJob.companyName}"),
-                                  subtitle: Row(
-                                    mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Text("${singleJob.position}"),
-                                      Row(
-                                        mainAxisAlignment: MainAxisAlignment.end,
-                                        children: [
-                                          Text("\$"),
-                                          Text("${singleJob.salary}"),
-                                        ],
-                                      )
-                                    ],
-                                  ),
-                                  trailing: TextButton(
-                                      child: Text("Apply"),
-                                      onPressed: () {
-                                        Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                              builder: (context) =>
-                                                  AppliesPage(),
-                                            ));
-                                      }),
                                 ),
-                              ),
-                            );
+                              );
+                            }
                           }),
                     );
                   }
                   return const Center(
                     child: CircularProgressIndicator(),
                   );
-                })
+                }),
+            SizedBox(
+              height: 10,
+            ),
+            // Text("Applied jobs"),
+            // StreamBuilder<List<String>>(
+            //     stream: FirebaseFirestore.instance
+            //         .collection('appliedJobs')
+            //         .doc(FirebaseAuth.instance.currentUser!.uid)
+            //         .collection('jobs')
+            //         .snapshots()
+            //         .map((snapshot) =>
+            //             snapshot.docs.map((doc) => doc.id).toList()),
+            //     builder: (context, snapshot) {
+            //       if (snapshot.connectionState == ConnectionState.waiting) {
+            //         return const CircularProgressIndicator();
+            //       }
+            //       if (snapshot.hasData) {
+            //         appliedJobIds = snapshot.data!;
+            //         return ListView.builder(
+            //             itemCount: appliedJobIds.length,
+            //             itemBuilder: (context, index) {
+            //               final appliedJobId = appliedJobIds[index];
+            //               // Display information about the applied job
+            //               return ListTile(
+            //                 title: Text("Applied Job ID: $appliedJobId"),
+            //               );
+            //             });
+            //       }
+            //       return Container();
+            //     })
           ],
         ),
       ),

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:job_portal_app/models/Company.dart';
 import 'package:job_portal_app/screens/company_authentication.dart';
 import 'package:job_portal_app/screens/job_seeker_authentication.dart';
-import 'package:job_portal_app/screens/login_page.dart';
+import 'package:job_portal_app/screens/login.dart';
 import 'package:job_portal_app/screens/my_drawer_header.dart';
 import 'package:job_portal_app/screens/register.dart';
 import 'package:job_portal_app/screens/register_page.dart';
@@ -139,7 +139,7 @@ class _HomePageState extends State<HomePage> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => Register(),
+                            builder: (context) => LoginPage(),
                           ),
                         );
                       },
@@ -156,7 +156,7 @@ class _HomePageState extends State<HomePage> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => Register(),
+                            builder: (context) => LoginPage(),
                           ),
                         );
                       },

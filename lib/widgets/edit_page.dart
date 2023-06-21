@@ -39,7 +39,7 @@ class _EditPageState extends State<EditPage> {
     return SafeArea(
         child: Scaffold(
       appBar: AppBar(
-        title: Text("Edit"),
+        title: const Text("Edit"),
       ),
       body: Padding(
         padding: EdgeInsets.all(8),
@@ -67,6 +67,7 @@ class _EditPageState extends State<EditPage> {
             ),
             TextFormField(
               controller: _salaryController,
+              keyboardType: TextInputType.number,
               decoration: const InputDecoration(
                 border: OutlineInputBorder(),
                 hintText: "salary",
@@ -97,9 +98,9 @@ class _EditPageState extends State<EditPage> {
                   ),
                   color: Colors.cyanAccent,
                 ),
-                child: Row(
+                child: const Row(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: const [
+                  children: [
                     Icon(
                       Icons.add,
                       color: Colors.white,

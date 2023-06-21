@@ -29,11 +29,11 @@ class _RegisterState extends State<Register> {
   bool _isObscure = true;
   bool _isObscure2 = true;
   File? file;
-  var options = [
-    'Company',
-    'JobSeeker',
-  ];
-  var _currentItemSelected = "Company";
+  // var options = [
+  //   'Company',
+  //   'JobSeeker',
+  // ];
+  // var _currentItemSelected = "Company";
   var role = "Company";
 
   @override
@@ -213,46 +213,46 @@ class _RegisterState extends State<Register> {
                         const SizedBox(
                           height: 20,
                         ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            const Text(
-                              "role : ",
-                              style: TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white,
-                              ),
-                            ),
-                            DropdownButton<String>(
-                              dropdownColor: Colors.blue[900],
-                              isDense: true,
-                              isExpanded: false,
-                              iconEnabledColor: Colors.white,
-                              focusColor: Colors.white,
-                              items: options.map((String dropDownStringItem) {
-                                return DropdownMenuItem<String>(
-                                  value: dropDownStringItem,
-                                  child: Text(
-                                    dropDownStringItem,
-                                    style: const TextStyle(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 20,
-                                    ),
-                                  ),
-                                );
-                              }).toList(),
-                              onChanged: (newValueSelected) {
-                                setState(() {
-                                  _currentItemSelected = newValueSelected!;
-                                  role = newValueSelected;
-                                });
-                              },
-                              value: _currentItemSelected,
-                            ),
-                          ],
-                        ),
+                        // Row(
+                        //   mainAxisAlignment: MainAxisAlignment.center,
+                        //   children: [
+                        //     const Text(
+                        //       "role : ",
+                        //       style: TextStyle(
+                        //         fontSize: 20,
+                        //         fontWeight: FontWeight.bold,
+                        //         color: Colors.white,
+                        //       ),
+                        //     ),
+                        //     DropdownButton<String>(
+                        //       dropdownColor: Colors.blue[900],
+                        //       isDense: true,
+                        //       isExpanded: false,
+                        //       iconEnabledColor: Colors.white,
+                        //       focusColor: Colors.white,
+                        //       items: options.map((String dropDownStringItem) {
+                        //         return DropdownMenuItem<String>(
+                        //           value: dropDownStringItem,
+                        //           child: Text(
+                        //             dropDownStringItem,
+                        //             style: const TextStyle(
+                        //               color: Colors.white,
+                        //               fontWeight: FontWeight.bold,
+                        //               fontSize: 20,
+                        //             ),
+                        //           ),
+                        //         );
+                        //       }).toList(),
+                        //       onChanged: (newValueSelected) {
+                        //         setState(() {
+                        //           _currentItemSelected = newValueSelected!;
+                        //           role = newValueSelected;
+                        //         });
+                        //       },
+                        //       value: _currentItemSelected,
+                        //     ),
+                        //   ],
+                        // ),
                         const SizedBox(
                           height: 20,
                         ),
@@ -260,29 +260,6 @@ class _RegisterState extends State<Register> {
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           crossAxisAlignment: CrossAxisAlignment.end,
                           children: [
-                            MaterialButton(
-                              shape: RoundedRectangleBorder(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(20.0))),
-                              elevation: 5.0,
-                              height: 40,
-                              onPressed: () {
-                                const CircularProgressIndicator();
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => LoginPage(),
-                                  ),
-                                );
-                              },
-                              color: Colors.white,
-                              child: const Text(
-                                "Login",
-                                style: TextStyle(
-                                  fontSize: 20,
-                                ),
-                              ),
-                            ),
                             MaterialButton(
                               shape: const RoundedRectangleBorder(
                                   borderRadius:
