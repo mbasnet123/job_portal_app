@@ -141,53 +141,74 @@ class _CompanyAuthState extends State<CompanyAuth> {
               const SizedBox(
                 height: 10,
               ),
-              InkWell(
-                onTap: () {
-                  if (formKey.currentState!.validate()) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(
-                        content: Text("Submitting data"),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  InkWell(
+                    onTap: () {
+                      if (formKey.currentState!.validate()) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text("Submitting data"),
+                          ),
+                        );
+                        FirestoreHelper.add(
+                          JobModel(
+                              companyName: _companyNameController.text,
+                              position: _positionController.text,
+                              salary: _salaryController.text,
+                              id: ''),
+                        );
+                        _salaryController.clear();
+                        _positionController.clear();
+                        _companyNameController.clear();
+                        // _add();
+                      }
+                    },
+                    child: Container(
+                      width: 100,
+                      height: 30,
+                      decoration: const BoxDecoration(
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(5),
+                        ),
+                        color: Colors.cyanAccent,
                       ),
-                    );
-                    FirestoreHelper.add(
-                      JobModel(
-                          companyName: _companyNameController.text,
-                          position: _positionController.text,
-                          salary: _salaryController.text,
-                          id: ''),
-                    );
-                    _salaryController.clear();
-                    _positionController.clear();
-                    _companyNameController.clear();
-                    // _add();
-                  }
-                },
-                child: Container(
-                  width: 100,
-                  height: 30,
-                  decoration: const BoxDecoration(
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(5),
+                      child: const Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(
+                            Icons.add,
+                            color: Colors.white,
+                          ),
+                          SizedBox(
+                            width: 5,
+                          ),
+                          Text(
+                            "Add Jobs",
+                            style: TextStyle(color: Colors.white),
+                          ),
+                        ],
+                      ),
                     ),
-                    color: Colors.cyanAccent,
                   ),
-                  child: const Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(
-                        Icons.add,
-                        color: Colors.white,
-                      ),
-                      SizedBox(
-                        width: 5,
-                      ),
-                      Text(
-                        "Add Jobs",
-                        style: TextStyle(color: Colors.white),
-                      ),
-                    ],
+                  const SizedBox(
+                    width: 10,
                   ),
-                ),
+                  ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) {
+                           return AppliedJobsPage();
+                          },
+                        ),
+                      );
+                    },
+                    child: const Text("Applied positions"),
+                  ),
+                ],
               ),
               const SizedBox(
                 height: 10,
@@ -344,5 +365,4 @@ class _CompanyAuthState extends State<CompanyAuth> {
   }
 }
 
-class _apply {
-}
+class _apply {}

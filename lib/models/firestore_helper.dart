@@ -35,10 +35,10 @@ class FirestoreHelper {
     final docRef = jobCollection.doc(job.id);
 
     final newJob = JobModel(
-        id: job.id,
-        companyName: job.companyName,
-        position: job.position,
-        salary: job.salary)
+            id: job.id,
+            companyName: job.companyName,
+            position: job.position,
+            salary: job.salary)
         .toJson();
 
     try {
@@ -48,7 +48,7 @@ class FirestoreHelper {
     }
   }
 
-  static Future delete(JobModel job) async{
+  static Future delete(JobModel job) async {
     final jobCollection = FirebaseFirestore.instance.collection("jobs");
 
     final docRed = jobCollection.doc(job.id).delete();

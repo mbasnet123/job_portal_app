@@ -11,7 +11,6 @@ import 'package:job_portal_app/widgets/bottom_navigation_bar_interface.dart';
 import '../components/companies.dart';
 import '../components/company_vertical.dart';
 import 'package:job_portal_app/screens/search_page.dart';
-
 import '../models/job_model.dart';
 
 class HomePage extends StatefulWidget {
