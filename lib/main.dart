@@ -31,7 +31,9 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(primaryColor: Colors.blue,
       primarySwatch: Colors.blue),
-      home: FirstPage(),
+      home:
+      // SplashScreen(),
+      FirstPage(),
     );
   }
 }

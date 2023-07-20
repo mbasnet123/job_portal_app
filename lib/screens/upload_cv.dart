@@ -17,8 +17,7 @@ class _UploadCVState extends State<UploadCV> {
   final FirebaseFirestore _firebaseFirestore = FirebaseFirestore.instance;
 
   Future<String> uploadCV(String fileName, File file) async {
-    final reference =
-        FirebaseStorage.instance.ref().child("pdfs/$fileName.pdf");
+    final reference = FirebaseStorage.instance.ref().child("pdfs/$fileName");
 
     final uploadTask = reference.putFile(file);
 
@@ -27,6 +26,9 @@ class _UploadCVState extends State<UploadCV> {
     final downloadLink = await reference.getDownloadURL();
 
     return downloadLink;
+    //  Collection uploadedCVS
+    //  name: fileName.split(".").
+    //   "url": downloadLink
   }
 
   void pickFile() async {
@@ -55,9 +57,9 @@ class _UploadCVState extends State<UploadCV> {
     final results = await _firebaseFirestore.collection("pdfs").get();
 
     pdfData = results.docs.map((e) => e.data()).toList();
+    //File aauxa
 
-    setState(() {
-    });
+    setState(() {});
   }
 
   @override
@@ -71,13 +73,18 @@ class _UploadCVState extends State<UploadCV> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: GridView.builder(
-        itemCount: pdfData.length,
-        // itemCount: 4,
+        // itemCount: pdfData.length,
+        itemCount: 1,
         gridDelegate:
             SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
         itemBuilder: (context, index) {
           return InkWell(
-            onTap: (){},
+            onTap: () {
+              //  Flutter pdf pass
+              //  asBytes
+              //  File new file Create File.writeFromBytes
+              //  Pdf.open(file
+            },
             child: Container(
               height: 60,
               width: 60,
@@ -93,11 +100,12 @@ class _UploadCVState extends State<UploadCV> {
                     width: 100,
                   ),
                   Text(
-                    pdfData[index]["name"],
+                    // pdfData[index]["name"],
+                    "name",
                     style: const TextStyle(
                       fontSize: 15,
                     ),
-                  )
+                  ),
                 ],
               ),
             ),

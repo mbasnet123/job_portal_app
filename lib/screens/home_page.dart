@@ -21,248 +21,266 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  String role = "Company";
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    return Scaffold(
-      drawer: SafeArea(
-        child: Drawer(
-          backgroundColor: Colors.white,
-          child: SingleChildScrollView(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: const [
-                MyDrawerHeader(),
-                // MyDrawerList(),
-              ],
-            ),
-          ),
+    return Container(
+      decoration: BoxDecoration(
+        gradient: LinearGradient(colors: [
+          Colors.red,
+          Colors.green
+        ],
+          begin: Alignment.topRight,
+          end: Alignment.bottomLeft,
         ),
       ),
-      appBar: AppBar(
-        backgroundColor: Colors.white70,
-        leading: Builder(builder: (context) {
-          return IconButton(
-            onPressed: () => Scaffold.of(context).openDrawer(),
-            icon: const Icon(
-              Icons.menu,
-              color: Colors.cyan,
-            ),
-          );
-        }),
-        title: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 4),
-          child: InkWell(
-            onTap: () {
-              Navigator.push(
-                  context, MaterialPageRoute(builder: (_) => SearchPage()));
-            },
-            child: Container(
-              child: Text(
-                "Search Here",
-                style: TextStyle(color: Colors.black),
-              ),
-            ),
-          ),
-        ),
-        // automaticallyImplyLeading: false,
-      ),
-      // centerTitle: true,
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            // mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Row(
+      child: Scaffold(
+        drawer: SafeArea(
+          child: Drawer(
+            backgroundColor: Colors.white,
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: const [
-                  RegisterInterface(),
+                  MyDrawerHeader(),
+                  // MyDrawerList(),
                 ],
               ),
-              const SizedBox(
-                height: 20,
+            ),
+          ),
+        ),
+        appBar: AppBar(
+          backgroundColor: Colors.white70,
+          leading: Builder(builder: (context) {
+            return IconButton(
+              onPressed: () => Scaffold.of(context).openDrawer(),
+              icon: const Icon(
+                Icons.menu,
+                color: Colors.cyan,
               ),
-              // Center(
-              //   child: Row(
-              //     mainAxisAlignment: MainAxisAlignment.center,
-              //     children: [
-              //       ElevatedButton(
-              //         onPressed: () {
-              //           Navigator.push(
-              //             context,
-              //             MaterialPageRoute(
-              //               builder: (context) => const RegisterPage(),
-              //             ),
-              //           );
-              //         },
-              //         style: ElevatedButton.styleFrom(
-              //           backgroundColor: Colors.black45,
-              //           shape: RoundedRectangleBorder(
-              //             borderRadius: BorderRadius.circular(15),
-              //           ),
-              //         ),
-              //         child: const Text("Register"),
-              //       ),
-              //       const SizedBox(
-              //         width: 10,
-              //       ),
-              //       ElevatedButton(
-              //         onPressed: () {
-              //           Navigator.push(
-              //             context,
-              //             MaterialPageRoute(
-              //               builder: (context) => const LoginPage(),
-              //             ),
-              //           );
-              //         },
-              //         style: ElevatedButton.styleFrom(
-              //           backgroundColor: Colors.redAccent,
-              //           // primary: Color(Colors.redAccent),
-              //           shape: RoundedRectangleBorder(
-              //             borderRadius: BorderRadius.circular(15),
-              //           ),
-              //         ),
-              //         child: const Text("Login"),
-              //       ),
-              //     ],
-              //   ),
-              // ),
+            );
+          }),
+          title: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 4),
+            child: InkWell(
+              onTap: () {
+                Navigator.push(
+                    context, MaterialPageRoute(builder: (_) => SearchPage()));
+              },
+              child: Container(
+                child: Text(
+                  "Search Here",
+                  style: TextStyle(color: Colors.black),
+                ),
+              ),
+            ),
+          ),
+          // automaticallyImplyLeading: false,
+        ),
+        // centerTitle: true,
+        body: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              // mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Row(
+                  children: const [
+                    RegisterInterface(),
+                  ],
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                // Center(
+                //   child: Row(
+                //     mainAxisAlignment: MainAxisAlignment.center,
+                //     children: [
+                //       ElevatedButton(
+                //         onPressed: () {
+                //           Navigator.push(
+                //             context,
+                //             MaterialPageRoute(
+                //               builder: (context) => const RegisterPage(),
+                //             ),
+                //           );
+                //         },
+                //         style: ElevatedButton.styleFrom(
+                //           backgroundColor: Colors.black45,
+                //           shape: RoundedRectangleBorder(
+                //             borderRadius: BorderRadius.circular(15),
+                //           ),
+                //         ),
+                //         child: const Text("Register"),
+                //       ),
+                //       const SizedBox(
+                //         width: 10,
+                //       ),
+                //       ElevatedButton(
+                //         onPressed: () {
+                //           Navigator.push(
+                //             context,
+                //             MaterialPageRoute(
+                //               builder: (context) => const LoginPage(),
+                //             ),
+                //           );
+                //         },
+                //         style: ElevatedButton.styleFrom(
+                //           backgroundColor: Colors.redAccent,
+                //           // primary: Color(Colors.redAccent),
+                //           shape: RoundedRectangleBorder(
+                //             borderRadius: BorderRadius.circular(15),
+                //           ),
+                //         ),
+                //         child: const Text("Login"),
+                //       ),
+                //     ],
+                //   ),
+                // ),
 
-              Center(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                Center(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      ElevatedButton(
+                        onPressed: () {
+                          setState(() {
+                            role = "Company"; // Update role to "Company" when Company button is pressed
+                          });
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => LoginPage(),
+                            ),
+                          );
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.redAccent,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(15),
+                          ),
+                        ),
+                        child: const Text("Company"),
+                      ),
+                      ElevatedButton(
+                        onPressed: () {
+                          setState(() {
+                            role = "JobSeeker"; // Update role to "JobSeeker" when JobSeeker button is pressed
+                          });
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => LoginPage(),
+                            ),
+                          );
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.purpleAccent,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(15),
+                          ),
+                        ),
+                        child: const Text("JobSeeker"),
+                      ),
+                    ],
+                  ),
+                ),
+
+                const SizedBox(
+                  height: 10,
+                ),
+                const Divider(
+                  // color: Colors.grey,
+                  thickness: 8,
+                ),
+                // Center(
+                //   child: SizedBox(
+                //     height: 80,
+                //     width: 80,
+                //     child: Image.asset("assets/images/magnifying-glass.jpg"),
+                //   ),
+                // ),
+                // const Center(
+                //   child: Padding(
+                //     padding: EdgeInsets.all(8.0),
+                //     child: Text(
+                //       "Get your dream job",
+                //       style: TextStyle(
+                //         fontSize: 20,
+                //       ),
+                //     ),
+                //   ),
+                // ),
+                // const TextField(
+                //   decoration: InputDecoration(
+                //     border: InputBorder.none,
+                //     hintText: "Enter skills",
+                //     hintStyle: TextStyle(
+                //       fontSize: 25,
+                //       color: Colors.brown,
+                //     ),
+                //   ),
+                // ),
+                // const Divider(
+                //   thickness: 3,
+                // ),
+                // const TextField(
+                //   decoration: InputDecoration(
+                //     border: InputBorder.none,
+                //     hintText: "Enter Location",
+                //     hintStyle: TextStyle(
+                //       fontSize: 25,
+                //       color: Colors.brown,
+                //     ),
+                //   ),
+                // ),
+                // const Divider(
+                //   thickness: 3,
+                // ),
+                // const SizedBox(
+                //   height: 15,
+                // ),
+                // Center(
+                //   child: ElevatedButton(
+                //     onPressed: () {},
+                //     style: ElevatedButton.styleFrom(
+                //       shape: RoundedRectangleBorder(
+                //         borderRadius: BorderRadius.circular(15),
+                //       ),
+                //     ),
+                //     child: const Text("Search Jobs"),
+                //   ),
+                // ),
+                // Divider(
+                //   thickness: 8,
+                //   color: Colors.grey.shade100,
+                // ),
+                Row(
                   children: [
-                    ElevatedButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => LoginPage(),
-                          ),
-                        );
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.redAccent,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(15),
-                        ),
-                      ),
-                      child: const Text("Company"),
+                    const Text(
+                      "Companies",
+                      style: TextStyle(color: Colors.black, fontSize: 20),
                     ),
-                    ElevatedButton(
+                    TextButton(
                       onPressed: () {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => LoginPage(),
-                          ),
+                              builder: (context) => const CompanyVertical()),
                         );
                       },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.purpleAccent,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(15),
-                        ),
+                      child: const Text(
+                        "See all",
+                        style: TextStyle(color: Colors.blue, fontSize: 20),
                       ),
-                      child: const Text("JobSeeker"),
                     ),
                   ],
                 ),
-              ),
-
-              const SizedBox(
-                height: 10,
-              ),
-              const Divider(
-                // color: Colors.grey,
-                thickness: 8,
-              ),
-              // Center(
-              //   child: SizedBox(
-              //     height: 80,
-              //     width: 80,
-              //     child: Image.asset("assets/images/magnifying-glass.jpg"),
-              //   ),
-              // ),
-              // const Center(
-              //   child: Padding(
-              //     padding: EdgeInsets.all(8.0),
-              //     child: Text(
-              //       "Get your dream job",
-              //       style: TextStyle(
-              //         fontSize: 20,
-              //       ),
-              //     ),
-              //   ),
-              // ),
-              // const TextField(
-              //   decoration: InputDecoration(
-              //     border: InputBorder.none,
-              //     hintText: "Enter skills",
-              //     hintStyle: TextStyle(
-              //       fontSize: 25,
-              //       color: Colors.brown,
-              //     ),
-              //   ),
-              // ),
-              // const Divider(
-              //   thickness: 3,
-              // ),
-              // const TextField(
-              //   decoration: InputDecoration(
-              //     border: InputBorder.none,
-              //     hintText: "Enter Location",
-              //     hintStyle: TextStyle(
-              //       fontSize: 25,
-              //       color: Colors.brown,
-              //     ),
-              //   ),
-              // ),
-              // const Divider(
-              //   thickness: 3,
-              // ),
-              // const SizedBox(
-              //   height: 15,
-              // ),
-              // Center(
-              //   child: ElevatedButton(
-              //     onPressed: () {},
-              //     style: ElevatedButton.styleFrom(
-              //       shape: RoundedRectangleBorder(
-              //         borderRadius: BorderRadius.circular(15),
-              //       ),
-              //     ),
-              //     child: const Text("Search Jobs"),
-              //   ),
-              // ),
-              // Divider(
-              //   thickness: 8,
-              //   color: Colors.grey.shade100,
-              // ),
-              Row(
-                children: [
-                  const Text(
-                    "Companies",
-                    style: TextStyle(color: Colors.black, fontSize: 20),
-                  ),
-                  TextButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const CompanyVertical()),
-                      );
-                    },
-                    child: const Text(
-                      "See all",
-                      style: TextStyle(color: Colors.blue, fontSize: 20),
-                    ),
-                  ),
-                ],
-              ),
-              const CompanyList(),
-            ],
+                const CompanyList(),
+              ],
+            ),
           ),
         ),
       ),

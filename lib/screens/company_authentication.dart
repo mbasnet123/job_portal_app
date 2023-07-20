@@ -201,7 +201,7 @@ class _CompanyAuthState extends State<CompanyAuth> {
                         context,
                         MaterialPageRoute(
                           builder: (context) {
-                           return AppliedJobsPage();
+                            return AppliedJobsPage();
                           },
                         ),
                       );
@@ -308,22 +308,23 @@ class _CompanyAuthState extends State<CompanyAuth> {
                                       ],
                                     ),
                                     trailing: InkWell(
-                                        onTap: () {
-                                          Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                builder: (context) => EditPage(
-                                                  job: JobModel(
-                                                      position:
-                                                          singleJob.position,
-                                                      companyName:
-                                                          singleJob.companyName,
-                                                      salary: singleJob.salary,
-                                                      id: singleJob.id),
-                                                ),
-                                              ));
-                                        },
-                                        child: const Icon(Icons.edit)),
+                                      onTap: () {
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: (context) => EditPage(
+                                                job: JobModel(
+                                                    position:
+                                                        singleJob.position,
+                                                    companyName:
+                                                        singleJob.companyName,
+                                                    salary: singleJob.salary,
+                                                    id: singleJob.id),
+                                              ),
+                                            ));
+                                      },
+                                      child: const Icon(Icons.edit),
+                                    ),
                                   ),
                                 ),
                               );
@@ -365,4 +366,4 @@ class _CompanyAuthState extends State<CompanyAuth> {
   }
 }
 
-class _apply {}
+// class _apply {}

@@ -50,22 +50,22 @@ class MyDrawerHeader extends StatelessWidget {
               primary: Colors.purpleAccent,
             ),
           ),
-          TextButton.icon(
-            onPressed: () {},
-            icon: const Icon(Icons.chat),
-            label: const Text("Chat for help"),
-            style: TextButton.styleFrom(
-              primary: Colors.purpleAccent,
-            ),
-          ),
-          TextButton.icon(
-            onPressed: () {},
-            icon: const Icon(Icons.notes),
-            label: const Text("NepaJob Blog"),
-            style: TextButton.styleFrom(
-              primary: Colors.purpleAccent,
-            ),
-          ),
+          // TextButton.icon(
+          //   onPressed: () {},
+          //   icon: const Icon(Icons.chat),
+          //   label: const Text("Chat for help"),
+          //   style: TextButton.styleFrom(
+          //     primary: Colors.purpleAccent,
+          //   ),
+          // ),
+          // TextButton.icon(
+          //   onPressed: () {},
+          //   icon: const Icon(Icons.notes),
+          //   label: const Text("NepaJob Blog"),
+          //   style: TextButton.styleFrom(
+          //     primary: Colors.purpleAccent,
+          //   ),
+          // ),
           TextButton.icon(
             onPressed: () {
               Navigator.push(context, MaterialPageRoute(builder: (context){

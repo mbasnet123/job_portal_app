@@ -67,7 +67,7 @@ class _AppliedJobsPageState extends State<AppliedJobsPage> {
                             ),
                             title: Text("${singleApply.id}"),
                             subtitle: Text("${singleApply.experience}"),
-                            trailing: Text("${singleApply.eduaction}"),
+                            trailing: Text("${singleApply.education}"),
                           ),
                         ),
                       );

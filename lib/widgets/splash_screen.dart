@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:job_portal_app/screens/home_page.dart';
 
 import 'bottom_navigation_bar_interface.dart';
 
@@ -17,11 +18,13 @@ class _SplashScreenState extends State<SplashScreen> {
     // TODO: implement initState
     super.initState();
 
-    Timer(const Duration(seconds: 5), () {
+    Timer(const Duration(seconds: 2), () {
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
-          builder: (context) => const BottomNavigationBarInterface(),
+          builder: (context) => const
+          BottomNavigationBarInterface(),
+          // HomePage(),
         ),
       );
     });
@@ -29,18 +32,27 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.blue,
-      child: const Padding(
-        padding: EdgeInsets.all(60.0),
-        child: Center(
-          child: Text(
-            "Nepajob",
-            style: TextStyle(
-                fontSize: 35,
-                color: Colors.white,
-                fontWeight: FontWeight.w700),
-          ),
+    return Scaffold(
+      backgroundColor: Colors.cyan,
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            // Text(
+            //   "Nepajob",
+            //   style: TextStyle(
+            //       fontSize: 35,
+            //       color: Colors.white,
+            //       fontWeight: FontWeight.w700),
+            // ),
+            Image(
+              image: AssetImage(
+                "assets/images/nepaJob_logo.png",
+              ),
+              height: 250,
+              width: 250,
+            ),
+          ],
         ),
       ),
     );

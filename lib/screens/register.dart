@@ -7,6 +7,8 @@ import 'login.dart';
 // import 'model.dart';
 
 class Register extends StatefulWidget {
+  final String role;
+  Register({required this.role});
   @override
   _RegisterState createState() => _RegisterState();
 }
@@ -22,19 +24,20 @@ class _RegisterState extends State<Register> {
 
   final TextEditingController passwordController = new TextEditingController();
   final TextEditingController confirmpassController =
-      new TextEditingController();
-  final TextEditingController name = new TextEditingController();
+  new TextEditingController();
+  // final TextEditingController nameController = new TextEditingController();
   final TextEditingController emailController = new TextEditingController();
   final TextEditingController mobile = new TextEditingController();
   bool _isObscure = true;
   bool _isObscure2 = true;
   File? file;
+
   // var options = [
   //   'Company',
   //   'JobSeeker',
   // ];
   // var _currentItemSelected = "Company";
-  var role = "Company";
+  // var role = "Company";
 
   @override
   Widget build(BuildContext context) {
@@ -64,8 +67,14 @@ class _RegisterState extends State<Register> {
           children: <Widget>[
             Container(
               color: Colors.cyan,
-              width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height,
+              width: MediaQuery
+                  .of(context)
+                  .size
+                  .width,
+              height: MediaQuery
+                  .of(context)
+                  .size
+                  .height,
               child: SingleChildScrollView(
                 child: Container(
                   margin: EdgeInsets.all(12),
@@ -92,6 +101,28 @@ class _RegisterState extends State<Register> {
                         const SizedBox(
                           height: 50,
                         ),
+                        // TextFormField(
+                        //   controller: nameController,
+                        //   decoration: InputDecoration(
+                        //     filled: true,
+                        //     fillColor: Colors.white,
+                        //     hintText: 'Name',
+                        //     enabled: true,
+                        //     contentPadding: const EdgeInsets.only(
+                        //         left: 14.0, bottom: 8.0, top: 8.0),
+                        //     focusedBorder: OutlineInputBorder(
+                        //       borderSide: new BorderSide(color: Colors.white),
+                        //       borderRadius: new BorderRadius.circular(20),
+                        //     ),
+                        //     enabledBorder: UnderlineInputBorder(
+                        //       borderSide: new BorderSide(color: Colors.white),
+                        //       borderRadius: new BorderRadius.circular(20),
+                        //     ),
+                        //   ),
+                        // ),
+                        const SizedBox(
+                          height: 20,
+                        ),
                         TextFormField(
                           controller: emailController,
                           decoration: InputDecoration(
@@ -115,7 +146,7 @@ class _RegisterState extends State<Register> {
                               return "Email cannot be empty";
                             }
                             if (!RegExp(
-                                    "^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]")
+                                "^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]")
                                 .hasMatch(value)) {
                               return ("Please enter a valid email");
                             } else {
@@ -263,15 +294,19 @@ class _RegisterState extends State<Register> {
                             MaterialButton(
                               shape: const RoundedRectangleBorder(
                                   borderRadius:
-                                      BorderRadius.all(Radius.circular(20.0))),
+                                  BorderRadius.all(Radius.circular(20.0))),
                               elevation: 5.0,
                               height: 40,
                               onPressed: () {
                                 setState(() {
                                   showProgress = true;
                                 });
-                                signUp(emailController.text,
-                                    passwordController.text, role);
+                                signUp(
+                                    // nameController.text,
+                                    emailController.text,
+                                    passwordController.text,
+                                    // role
+                                );
                               },
                               color: Colors.white,
                               child: const Text(
@@ -295,21 +330,43 @@ class _RegisterState extends State<Register> {
     );
   }
 
-  void signUp(String email, String password, String role) async {
+  void signUp(
+      // String name,
+      String email, String password,
+      // String role
+      ) async {
     const CircularProgressIndicator();
     if (_formkey.currentState!.validate()) {
       await _auth
-          .createUserWithEmailAndPassword(email: email, password: password)
-          .then((value) => {postDetailsToFirestore(email, role)})
+          .createUserWithEmailAndPassword(
+          email: email, password: password)
+          .then((value) {
+            User? user = _auth.currentUser;
+            // user!.updateDisplayName(name);
+            return {postDetailsToFirestore(
+                // name,
+                email
+                // ,role
+            )};
+          })
           .catchError((e) {});
     }
   }
 
-  postDetailsToFirestore(String email, String role) async {
+  postDetailsToFirestore(
+      // String name,
+      String email,
+      // String role
+      ) async {
     FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
     var user = _auth.currentUser;
     CollectionReference ref = FirebaseFirestore.instance.collection('users');
-    ref.doc(user!.uid).set({'email': emailController.text, 'role': role});
+    ref.doc(user!.uid).set(
+        {
+          // 'name' : nameController.text,
+          'email': emailController.text,
+          // 'role': role,
+          'role': widget.role});
     Navigator.pushReplacement(
         context, MaterialPageRoute(builder: (context) => LoginPage()));
   }
