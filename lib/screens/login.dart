@@ -8,6 +8,8 @@ import 'register.dart';
 import 'package:job_portal_app/widgets/reset_password.dart';
 
 class LoginPage extends StatefulWidget {
+  final String role;
+  LoginPage({required this.role});
   @override
   _LoginPageState createState() => _LoginPageState();
 }
@@ -235,7 +237,7 @@ class _LoginPageState extends State<LoginPage> {
                         Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => Register(role: '',),
+                            builder: (context) => Register(role: widget.role,),
                           ),
                         );
                       },

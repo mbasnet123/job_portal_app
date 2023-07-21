@@ -119,15 +119,7 @@ class _PdfUploadState extends State<PdfUpload> {
             const SizedBox(
               height: 12,
             ),
-            ElevatedButton(
-                onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(
-                    builder: (context) {
-                      return DownloadPdf();
-                    },
-                  ));
-                },
-                child: Text("See Files")),
+
             const SizedBox(
               height: 32,
             ),

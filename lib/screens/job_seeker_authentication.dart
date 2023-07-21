@@ -153,7 +153,7 @@ class _JobSeekerAuthState extends State<JobSeekerAuth> {
     Navigator.pushReplacement(
       context,
       MaterialPageRoute(
-        builder: (context) => LoginPage(),
+        builder: (context) => LoginPage(role: '',),
       ),
     );
   }

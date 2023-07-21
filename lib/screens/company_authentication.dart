@@ -6,6 +6,7 @@ import 'package:job_portal_app/models/job_model.dart';
 import 'package:job_portal_app/widgets/edit_page.dart';
 
 import 'applied_jobs_page.dart';
+import 'download_pdf.dart';
 import 'login.dart';
 
 class CompanyAuth extends StatefulWidget {
@@ -185,7 +186,7 @@ class _CompanyAuthState extends State<CompanyAuth> {
                             width: 5,
                           ),
                           Text(
-                            "Add Jobs",
+                            "Add Job",
                             style: TextStyle(color: Colors.white),
                           ),
                         ],
@@ -208,6 +209,16 @@ class _CompanyAuthState extends State<CompanyAuth> {
                     },
                     child: const Text("Applied positions"),
                   ),
+                  const SizedBox(width: 10,),
+                  ElevatedButton(
+                      onPressed: () {
+                        Navigator.push(context, MaterialPageRoute(
+                          builder: (context) {
+                            return DownloadPdf();
+                          },
+                        ));
+                      },
+                      child: Text("Pdf")),
                 ],
               ),
               const SizedBox(
@@ -360,7 +371,7 @@ class _CompanyAuthState extends State<CompanyAuth> {
     Navigator.pushReplacement(
       context,
       MaterialPageRoute(
-        builder: (context) => LoginPage(),
+        builder: (context) => LoginPage(role: '',),
       ),
     );
   }

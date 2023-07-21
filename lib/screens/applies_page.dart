@@ -93,7 +93,6 @@ class _AppliesPageState extends State<AppliesPage> {
               const SizedBox(
                 height: 10,
               ),
-
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -146,15 +145,19 @@ class _AppliesPageState extends State<AppliesPage> {
                   const SizedBox(
                     height: 10,
                   ),
-                  ElevatedButton(
-                    onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(
-                        builder: (context) {
-                          return UploadCV();
-                        },
-                      ));
-                    },
-                    child: const Text("Upload CV"),
+                  // couldn't view pdf using this method
+                  // ElevatedButton(
+                  //   onPressed: () {
+                  //     Navigator.push(context, MaterialPageRoute(
+                  //       builder: (context) {
+                  //         return UploadCV();
+                  //       },
+                  //     ));
+                  //   },
+                  //   child: const Text("Upload CV"),
+                  // ),
+                  const SizedBox(
+                    width: 10,
                   ),
                   ElevatedButton(
                     onPressed: () {
@@ -167,15 +170,13 @@ class _AppliesPageState extends State<AppliesPage> {
                         ),
                       );
                     },
-                    child: const Text("Pdf"),
+                    child: const Text("Upload Pdf"),
                   ),
                 ],
               ),
-
               const SizedBox(
                 height: 10,
               ),
-
               StreamBuilder<List<AppliedJobsModel>>(
                   stream: AppliedJobsFirestoreHelper.read(),
                   builder: (context, snapshot) {
@@ -186,108 +187,171 @@ class _AppliesPageState extends State<AppliesPage> {
                     }
                     if (snapshot.hasError) {
                       return const Center(
-                        child: Text("some error occurred"),
+                        child: Text("Some error occurred"),
                       );
                     }
                     if (snapshot.hasData) {
                       final applyData = snapshot.data;
-                      return Expanded(
-                        child: ListView.builder(
-                            itemCount: applyData!.length,
-                            itemBuilder: (context, index) {
-                              final singleApply = applyData[index];
-                              return SingleChildScrollView(
-                                child: Container(
-                                  margin:
-                                      const EdgeInsets.symmetric(vertical: 6),
-                                  child: ListTile(
-                                    onLongPress: () {
-                                      showDialog(
-                                          context: context,
-                                          builder: (context) {
-                                            return AlertDialog(
-                                              title: const Text("Delete"),
-                                              content: const Text(
-                                                  "are you sure you want to delete"),
-                                              actions: [
-                                                ElevatedButton(
-                                                    onPressed: () {
-                                                      AppliedJobsFirestoreHelper
-                                                              .delete(
-                                                                  singleApply)
-                                                          .then((value) {
-                                                        Navigator.pop(context);
-                                                      });
-                                                    },
-                                                    child:
-                                                        const Text("Delete")),
-                                              ],
-                                            );
+                      return ListView.builder(
+                        shrinkWrap: true,
+                        itemCount: applyData!.length,
+                        itemBuilder: (context, index) {
+                          final singleApply = applyData[index];
+                          return ListTile(
+                            leading: Container(
+                              width: 35,
+                              height: 35,
+                              decoration: const BoxDecoration(
+                                color: Colors.lime,
+                                shape: BoxShape.circle,
+                              ),
+                            ),
+                            title:
+                                Text("Experience: ${singleApply.experience}"),
+                            subtitle:
+                                Text("Education: ${singleApply.education}"),
+                            onLongPress: () {
+                              showDialog(
+                                context: context,
+                                builder: (context) {
+                                  return AlertDialog(
+                                    title: const Text("Delete"),
+                                    content: const Text(
+                                        "Are you sure you want to delete?"),
+                                    actions: [
+                                      ElevatedButton(
+                                        onPressed: () {
+                                          AppliedJobsFirestoreHelper.delete(
+                                                  singleApply)
+                                              .then((value) {
+                                            Navigator.pop(context);
                                           });
-                                    },
-                                    leading: Container(
-                                      width: 35,
-                                      height: 35,
-                                      decoration: const BoxDecoration(
-                                          color: Colors.lime,
-                                          shape: BoxShape.circle),
-                                    ),
-                                    title: Text("${singleApply.experience}"),
-                                    subtitle: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Text("${singleApply.education}"),
-                                      ],
-                                    ),
-                                    // trailing: InkWell(
-                                    //     onTap: () {
-                                    //       Navigator.push(
-                                    //           context,
-                                    //           MaterialPageRoute(
-                                    //             builder: (context) => EditPage(
-                                    //               job: JobModel(
-                                    //                   position:
-                                    //                       singleJob.position,
-                                    //                   companyName:
-                                    //                       singleJob.companyName,
-                                    //                   salary: singleJob.salary,
-                                    //                   id: singleJob.id),
-                                    //             ),
-                                    //           ));
-                                    //     },
-                                    //     child: const Icon(Icons.edit)),
-                                  ),
-                                ),
+                                        },
+                                        child: const Text("Delete"),
+                                      ),
+                                    ],
+                                  );
+                                },
                               );
-                            }),
+                            },
+                          );
+                        },
                       );
                     }
-                    return const Center(
-                      child: CircularProgressIndicator(),
-                    );
-                  })
 
-              // ElevatedButton(
-              //   onPressed: () {
-              //     Navigator.push(context, MaterialPageRoute(
-              //       builder: (context) {
-              //         return UploadCV();
-              //       },
-              //     ));
-              //   },
-              //   child: const Text("Upload CV"),
-              // ),
-              // ElevatedButton(
-              //   onPressed: () {
-              //     if (formKey.currentState!.validate()) {
-              //       ScaffoldMessenger.of(context).showSnackBar(
-              //           const SnackBar(content: Text("Submitting data")));
-              //       _apply();
-              //     }
-              //   },
-              //   child: const Text("Apply"),
-              // ),
+                    // StreamBuilder<List<AppliedJobsModel>>(
+                    //     stream: AppliedJobsFirestoreHelper.read(),
+                    //     builder: (context, snapshot) {
+                    //       if (snapshot.connectionState == ConnectionState.waiting) {
+                    //         return const Center(
+                    //           child: CircularProgressIndicator(),
+                    //         );
+                    //       }
+                    //       if (snapshot.hasError) {
+                    //         return const Center(
+                    //           child: Text("some error occurred"),
+                    //         );
+                    //       }
+                    //       if (snapshot.hasData) {
+                    //         final applyData = snapshot.data;
+                    //         return ListView.builder(
+                    //           shrinkWrap: true,
+                    //             itemCount: applyData!.length,
+                    //             itemBuilder: (context, index) {
+                    //               final singleApply = applyData[index];
+                    //               return SingleChildScrollView(
+                    //                 child: Container(
+                    //                   margin:
+                    //                       const EdgeInsets.symmetric(vertical: 6),
+                    //                   child: ListTile(
+                    //                     onLongPress: () {
+                    //                       showDialog(
+                    //                           context: context,
+                    //                           builder: (context) {
+                    //                             return AlertDialog(
+                    //                               title: const Text("Delete"),
+                    //                               content: const Text(
+                    //                                   "are you sure you want to delete"),
+                    //                               actions: [
+                    //                                 ElevatedButton(
+                    //                                     onPressed: () {
+                    //                                       AppliedJobsFirestoreHelper
+                    //                                               .delete(
+                    //                                                   singleApply)
+                    //                                           .then((value) {
+                    //                                         Navigator.pop(context);
+                    //                                       });
+                    //                                     },
+                    //                                     child:
+                    //                                         const Text("Delete")),
+                    //                               ],
+                    //                             );
+                    //                           });
+                    //                     },
+                    //                     leading: Container(
+                    //                       width: 35,
+                    //                       height: 35,
+                    //                       decoration: const BoxDecoration(
+                    //                           color: Colors.lime,
+                    //                           shape: BoxShape.circle),
+                    //                     ),
+                    //                     title: Text("${singleApply.experience}"),
+                    //                     subtitle: Row(
+                    //                       mainAxisAlignment:
+                    //                           MainAxisAlignment.spaceBetween,
+                    //                       children: [
+                    //                         Text("${singleApply.education}"),
+                    //                       ],
+                    //                     ),
+                    //                     // trailing: InkWell(
+                    //                     //     onTap: () {
+                    //                     //       Navigator.push(
+                    //                     //           context,
+                    //                     //           MaterialPageRoute(
+                    //                     //             builder: (context) => EditPage(
+                    //                     //               job: JobModel(
+                    //                     //                   position:
+                    //                     //                       singleJob.position,
+                    //                     //                   companyName:
+                    //                     //                       singleJob.companyName,
+                    //                     //                   salary: singleJob.salary,
+                    //                     //                   id: singleJob.id),
+                    //                     //             ),
+                    //                     //           ));
+                    //                     //     },
+                    //                     //     child: const Icon(Icons.edit)),
+                    //                   ),
+                    //                 ),
+                    //               );
+                    //             });
+                    //       }
+                    //       return const Center(
+                    //         child: CircularProgressIndicator(),
+                    //       );
+                    //     })
+
+                    // ElevatedButton(
+                    //   onPressed: () {
+                    //     Navigator.push(context, MaterialPageRoute(
+                    //       builder: (context) {
+                    //         return UploadCV();
+                    //       },
+                    //     ));
+                    //   },
+                    //   child: const Text("Upload CV"),
+                    // ),
+                    // ElevatedButton(
+                    //   onPressed: () {
+                    //     if (formKey.currentState!.validate()) {
+                    //       ScaffoldMessenger.of(context).showSnackBar(
+                    //           const SnackBar(content: Text("Submitting data")));
+                    //       _apply();
+                    //     }
+                    //   },
+                    //   child: const Text("Apply"),
+                    // ),
+                    return Container();
+                  },),
             ],
           ),
         ),

@@ -368,6 +368,6 @@ class _RegisterState extends State<Register> {
           // 'role': role,
           'role': widget.role});
     Navigator.pushReplacement(
-        context, MaterialPageRoute(builder: (context) => LoginPage()));
+        context, MaterialPageRoute(builder: (context) => LoginPage(role: widget.role,)));
   }
 }
