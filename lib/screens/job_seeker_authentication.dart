@@ -9,7 +9,8 @@ import '../widgets/edit_page.dart';
 import 'login.dart';
 
 class JobSeekerAuth extends StatefulWidget {
-  const JobSeekerAuth({Key? key}) : super(key: key);
+  final String userEmail;
+  const JobSeekerAuth({Key? key, required this.userEmail}) : super(key: key);
 
   @override
   State<JobSeekerAuth> createState() => _JobSeekerAuthState();
@@ -22,7 +23,19 @@ class _JobSeekerAuthState extends State<JobSeekerAuth> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Job Seeker"),
+        title: FutureBuilder<User?>(
+          future: FirebaseAuth.instance.authStateChanges().first,
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const CircularProgressIndicator();
+            }
+            if (snapshot.hasData && snapshot.data != null) {
+              return Text(snapshot.data!.email ?? "Job Seeker");
+            } else {
+              return const Text("Job Seeker");
+            }
+          },
+        ),
         actions: [
           IconButton(
             onPressed: () {
@@ -59,7 +72,7 @@ class _JobSeekerAuthState extends State<JobSeekerAuth> {
                           itemCount: jobData!.length,
                           itemBuilder: (context, index) {
                             final singleJob = jobData[index];
-                            if (appliedJobIds.contains(singleJob.jobId)) {
+                            if (appliedJobIds.contains(singleJob.id)) {
                               return Container();
                             } else {
                               return SingleChildScrollView(

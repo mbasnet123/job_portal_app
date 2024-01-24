@@ -83,7 +83,8 @@ class _EditPageState extends State<EditPage> {
                       id: widget.job.id,
                       companyName: _companyNameController!.text,
                       position: _positionController!.text,
-                      salary: _salaryController!.text),
+                      salary: _salaryController!.text,
+                      companyEmail: widget.job.companyEmail),
                 ).then((value) {
                   Navigator.pop(context);
                 });

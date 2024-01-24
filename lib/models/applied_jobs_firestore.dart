@@ -3,7 +3,7 @@ import 'package:job_portal_app/models/applied_jobs_model.dart';
 
 class AppliedJobsFirestoreHelper {
   static Stream<List<AppliedJobsModel>> read() {
-    final applyCollection = FirebaseFirestore.instance.collection("appies");
+    final applyCollection = FirebaseFirestore.instance.collection("applies");
     return applyCollection.snapshots().map((querysnapshot) => querysnapshot.docs
         .map((e) => AppliedJobsModel.fromsnapshot(e))
         .toList());

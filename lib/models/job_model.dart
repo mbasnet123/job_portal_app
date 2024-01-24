@@ -1,35 +1,40 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:job_portal_app/screens/company_authentication.dart';
-class JobModel{
+
+class JobModel {
   String? id;
   String? companyName;
   String? position;
   String? salary;
+  String? companyEmail;
 
-  JobModel({required this.id,required this.companyName, required this.position, required this.salary});
+  JobModel(
+      {required this.id,
+      required this.companyName,
+      required this.position,
+      required this.salary,
+        required this.companyEmail,
+      });
 
-  factory JobModel.fromSnapshot(DocumentSnapshot snap){
+  factory JobModel.fromSnapshot(DocumentSnapshot snap) {
     var snapshot = snap.data() as Map<String, dynamic>;
 
-    return JobModel(id: snapshot["id"],
+    return JobModel(
+      id: snapshot["id"],
       companyName: snapshot["companyName"],
-        position: snapshot["position"],
-        salary: snapshot["salary"],);
+      position: snapshot["position"],
+      salary: snapshot["salary"],
+      companyEmail: snapshot["companyEmail"],
+    );
   }
 
-  Object? get jobId => null;
-
   Map<String, dynamic> toJson() => {
-    "id": id,
-    "companyName": companyName,
-    "position": position,
-    "salary": salary,
-  };
+        "id": id,
+        "companyName": companyName,
+        "position": position,
+        "salary": salary,
+    "companyEmail": companyEmail,
+      };
 }
 
-List<JobModel> job_list = [
-  JobModel(companyName: "Niu", position: "Manager", salary: "40000", id: '1'),
-  JobModel(companyName: "Nabil Bank", position: "Operations Head", salary: "50000", id: '2'),
-  JobModel(companyName: "Manish Bank", position: "Marketing head", salary: "60000", id: '3'),
-  JobModel(companyName: "Oyo", position: "Customer Service", salary: "30000", id: '4'),
-];
+List<JobModel> job_list = [];

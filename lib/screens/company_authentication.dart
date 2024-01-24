@@ -10,7 +10,8 @@ import 'download_pdf.dart';
 import 'login.dart';
 
 class CompanyAuth extends StatefulWidget {
-  const CompanyAuth({Key? key}) : super(key: key);
+  final String companyEmail;
+  const CompanyAuth({Key? key, required this.companyEmail}) : super(key: key);
 
   @override
   State<CompanyAuth> createState() => _CompanyAuthState();
@@ -34,7 +35,19 @@ class _CompanyAuthState extends State<CompanyAuth> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Company"),
+        title: FutureBuilder<User?>(
+          future: FirebaseAuth.instance.authStateChanges().first,
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const CircularProgressIndicator();
+            }
+            if (snapshot.hasData && snapshot.data != null) {
+              return Text(snapshot.data!.email ?? "Company");
+            } else {
+              return const Text("Company");
+            }
+          },
+        ),
         actions: [
           IconButton(
             onPressed: () {
@@ -158,7 +171,7 @@ class _CompanyAuthState extends State<CompanyAuth> {
                               companyName: _companyNameController.text,
                               position: _positionController.text,
                               salary: _salaryController.text,
-                              id: ''),
+                              id: '', companyEmail: ''),
                         );
                         _salaryController.clear();
                         _positionController.clear();
@@ -247,21 +260,29 @@ class _CompanyAuthState extends State<CompanyAuth> {
               const SizedBox(
                 height: 10,
               ),
-              StreamBuilder<List<JobModel>>(
-                  stream: FirestoreHelper.read(),
+              // StreamBuilder<List<JobModel>>(
+              //     // stream: FirestoreHelper.read(),
+              //     stream: FirestoreHelper.read()
+              //         .where('companyEmail', isEqualTo: FirebaseAuth.instance.currentUser?.email),
+              StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
+                  stream: FirebaseFirestore.instance.collection('jobs')
+                      .where('companyEmail', isEqualTo: FirebaseAuth.instance.currentUser?.email)
+                      .snapshots(),
                   builder: (context, snapshot) {
                     if (snapshot.connectionState == ConnectionState.waiting) {
                       return const Center(
                         child: CircularProgressIndicator(),
                       );
                     }
-                    if (snapshot.hasError) {
+                    if (snapshot.hasError  || snapshot.data!.docs.isEmpty) {
                       return const Center(
                         child: Text("some error occurred"),
                       );
                     }
                     if (snapshot.hasData) {
-                      final jobData = snapshot.data;
+                      // final jobData = snapshot.data;
+                      final jobData = snapshot.data!.docs.map((doc) => JobModel.fromSnapshot(doc)).toList();
+
                       return Expanded(
                         child: ListView.builder(
                             itemCount: jobData!.length,
@@ -330,7 +351,7 @@ class _CompanyAuthState extends State<CompanyAuth> {
                                                     companyName:
                                                         singleJob.companyName,
                                                     salary: singleJob.salary,
-                                                    id: singleJob.id),
+                                                    id: singleJob.id, companyEmail: ''),
                                               ),
                                             ));
                                       },

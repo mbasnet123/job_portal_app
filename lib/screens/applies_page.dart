@@ -192,50 +192,52 @@ class _AppliesPageState extends State<AppliesPage> {
                     }
                     if (snapshot.hasData) {
                       final applyData = snapshot.data;
-                      return ListView.builder(
-                        shrinkWrap: true,
-                        itemCount: applyData!.length,
-                        itemBuilder: (context, index) {
-                          final singleApply = applyData[index];
-                          return ListTile(
-                            leading: Container(
-                              width: 35,
-                              height: 35,
-                              decoration: const BoxDecoration(
-                                color: Colors.lime,
-                                shape: BoxShape.circle,
+                      return Expanded(
+                        child: ListView.builder(
+                          shrinkWrap: true,
+                          itemCount: applyData!.length,
+                          itemBuilder: (context, index) {
+                            final singleApply = applyData[index];
+                            return ListTile(
+                              leading: Container(
+                                width: 35,
+                                height: 35,
+                                decoration: const BoxDecoration(
+                                  color: Colors.lime,
+                                  shape: BoxShape.circle,
+                                ),
                               ),
-                            ),
-                            title:
-                                Text("Experience: ${singleApply.experience}"),
-                            subtitle:
-                                Text("Education: ${singleApply.education}"),
-                            onLongPress: () {
-                              showDialog(
-                                context: context,
-                                builder: (context) {
-                                  return AlertDialog(
-                                    title: const Text("Delete"),
-                                    content: const Text(
-                                        "Are you sure you want to delete?"),
-                                    actions: [
-                                      ElevatedButton(
-                                        onPressed: () {
-                                          AppliedJobsFirestoreHelper.delete(
-                                                  singleApply)
-                                              .then((value) {
-                                            Navigator.pop(context);
-                                          });
-                                        },
-                                        child: const Text("Delete"),
-                                      ),
-                                    ],
-                                  );
-                                },
-                              );
-                            },
-                          );
-                        },
+                              title:
+                                  Text("Experience: ${singleApply.experience}"),
+                              subtitle:
+                                  Text("Education: ${singleApply.education}"),
+                              onLongPress: () {
+                                showDialog(
+                                  context: context,
+                                  builder: (context) {
+                                    return AlertDialog(
+                                      title: const Text("Delete"),
+                                      content: const Text(
+                                          "Are you sure you want to delete?"),
+                                      actions: [
+                                        ElevatedButton(
+                                          onPressed: () {
+                                            AppliedJobsFirestoreHelper.delete(
+                                                    singleApply)
+                                                .then((value) {
+                                              Navigator.pop(context);
+                                            });
+                                          },
+                                          child: const Text("Delete"),
+                                        ),
+                                      ],
+                                    );
+                                  },
+                                );
+                              },
+                            );
+                          },
+                        ),
                       );
                     }
 

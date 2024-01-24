@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:job_portal_app/screens/home_page.dart';
 import 'login.dart';
+import 'package:email_validator/email_validator.dart';
 // import 'model.dart';
 
 class Register extends StatefulWidget {
@@ -31,6 +32,31 @@ class _RegisterState extends State<Register> {
   bool _isObscure = true;
   bool _isObscure2 = true;
   File? file;
+
+  String? validateEmail(String? value) {
+    if (!EmailValidator.validate(value!)) {
+      return 'Please enter a valid email address';
+    }
+
+    if (value!.length == 0) {
+      return "Email cannot be empty";
+    }
+    if (!RegExp(
+        "^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]")
+        .hasMatch(value)) {
+      return ("Please enter a valid email");
+    }
+
+    // Define allowed email providers
+    const allowedProviders = ['gmail.com', 'outlook.com', 'icloud.com'];
+
+    final emailParts = value.split('@');
+    if (!allowedProviders.contains(emailParts[1])) {
+      return 'Please use a valid email provider (e.g., Gmail, Outlook, Apple Mail)';
+    }
+
+    return null; // Email is valid
+  }
 
   // var options = [
   //   'Company',
@@ -141,18 +167,19 @@ class _RegisterState extends State<Register> {
                               borderRadius: new BorderRadius.circular(20),
                             ),
                           ),
-                          validator: (value) {
-                            if (value!.length == 0) {
-                              return "Email cannot be empty";
-                            }
-                            if (!RegExp(
-                                "^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]")
-                                .hasMatch(value)) {
-                              return ("Please enter a valid email");
-                            } else {
-                              return null;
-                            }
-                          },
+                          validator: validateEmail,
+                          //     (value) {
+                          //   if (value!.length == 0) {
+                          //     return "Email cannot be empty";
+                          //   }
+                          //   if (!RegExp(
+                          //       "^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]")
+                          //       .hasMatch(value)) {
+                          //     return ("Please enter a valid email");
+                          //   } else {
+                          //     return null;
+                          //   }
+                          // },
                           onChanged: (value) {},
                           keyboardType: TextInputType.emailAddress,
                         ),

@@ -11,7 +11,7 @@ class RegisterInterface extends StatelessWidget {
         Column(
           children: const [
             Text(
-              "Make the most out of NepaJob by\n      creating your job profile",
+              "Make the most out of NepaJob by\n             applying to jobs",
               style: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
@@ -35,7 +35,7 @@ class RegisterInterface extends StatelessWidget {
             ),
 
             Text(
-              "Recruiters will not post a job 70% of the times",
+              "Get a job by applying properly",
               style: TextStyle(
                 fontSize: 15,
               ),

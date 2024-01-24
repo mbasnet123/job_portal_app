@@ -30,7 +30,7 @@ class FirstPage extends StatelessWidget {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => const JobSeekerAuth(),
+                        builder: (context) => const JobSeekerAuth(userEmail: '',),
                       ));
                 },
                 child: Container(
@@ -67,7 +67,7 @@ class FirstPage extends StatelessWidget {
               InkWell(
                 onTap: () {
                   Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => const CompanyAuth()));
+                      MaterialPageRoute(builder: (context) => const CompanyAuth(companyEmail: '',)));
                 },
                 child: Container(
                   height: 120,

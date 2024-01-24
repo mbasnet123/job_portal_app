@@ -272,14 +272,15 @@ class _LoginPageState extends State<LoginPage> {
           Navigator.pushReplacement(
             context,
             MaterialPageRoute(
-              builder: (context) => CompanyAuth(),
+              builder: (context) => CompanyAuth(companyEmail: user.email!,),
             ),
           );
         } else {
+          // pass the user's email address to JobSeekerAuth
           Navigator.pushReplacement(
             context,
             MaterialPageRoute(
-              builder: (context) => JobSeekerAuth(),
+              builder: (context) => JobSeekerAuth(userEmail: user.email!),
             ),
           );
         }

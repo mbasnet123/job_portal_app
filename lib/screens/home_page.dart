@@ -61,21 +61,21 @@ class _HomePageState extends State<HomePage> {
               ),
             );
           }),
-          title: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 4),
-            child: InkWell(
-              onTap: () {
-                Navigator.push(
-                    context, MaterialPageRoute(builder: (_) => SearchPage()));
-              },
-              child: Container(
-                child: Text(
-                  "Search Here",
-                  style: TextStyle(color: Colors.black),
-                ),
-              ),
-            ),
-          ),
+          // title: Padding(
+          //   padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 4),
+          //   child: InkWell(
+          //     onTap: () {
+          //       Navigator.push(
+          //           context, MaterialPageRoute(builder: (_) => SearchPage()));
+          //     },
+          //     child: Container(
+          //       child: Text(
+          //         "Search Here",
+          //         style: TextStyle(color: Colors.black),
+          //       ),
+          //     ),
+          //   ),
+          // ),
           // automaticallyImplyLeading: false,
         ),
         // centerTitle: true,

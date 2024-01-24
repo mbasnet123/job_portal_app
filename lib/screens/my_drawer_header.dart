@@ -42,14 +42,14 @@ class MyDrawerHeader extends StatelessWidget {
           const SizedBox(
             height: 10,
           ),
-          TextButton.icon(
-            onPressed: () {},
-            icon: const Icon(Icons.search),
-            label: const Text("Search Jobs"),
-            style: TextButton.styleFrom(
-              primary: Colors.purpleAccent,
-            ),
-          ),
+          // TextButton.icon(
+          //   onPressed: () {},
+          //   icon: const Icon(Icons.search),
+          //   label: const Text("Search Jobs"),
+          //   style: TextButton.styleFrom(
+          //     primary: Colors.purpleAccent,
+          //   ),
+          // ),
           // TextButton.icon(
           //   onPressed: () {},
           //   icon: const Icon(Icons.chat),

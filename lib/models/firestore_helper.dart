@@ -1,12 +1,17 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:job_portal_app/models/job_model.dart';
 
 class FirestoreHelper {
+
   static Stream<List<JobModel>> read() {
     final jobCollection = FirebaseFirestore.instance.collection("jobs");
     return jobCollection.snapshots().map((querysnapshot) =>
         querysnapshot.docs.map((e) => JobModel.fromSnapshot(e)).toList());
+    
   }
+
+
 
   static Future add(JobModel job) async {
     final jobCollection = FirebaseFirestore.instance.collection("jobs");
@@ -18,7 +23,9 @@ class FirestoreHelper {
             id: jobId,
             companyName: job.companyName,
             position: job.position,
-            salary: job.salary)
+            salary: job.salary,
+      companyEmail: FirebaseAuth.instance.currentUser?.email ?? '',
+    )
         .toJson();
 
     try {
@@ -38,7 +45,8 @@ class FirestoreHelper {
             id: job.id,
             companyName: job.companyName,
             position: job.position,
-            salary: job.salary)
+            salary: job.salary,
+      companyEmail: FirebaseAuth.instance.currentUser?.email ?? '',)
         .toJson();
 
     try {

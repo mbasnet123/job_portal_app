@@ -84,7 +84,7 @@ class _PdfUploadState extends State<PdfUpload> {
 
   @override
   Widget build(BuildContext context) {
-    final String title = "Setup Firebase";
+    final String title = "Upload pdf";
     return Scaffold(
       appBar: AppBar(
         title: Text(title),
