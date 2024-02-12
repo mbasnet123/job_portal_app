@@ -63,7 +63,7 @@ class _CompanyListState extends State<CompanyList> {
                                         Row(
                                           mainAxisAlignment: MainAxisAlignment.end,
                                           children: [
-                                            Text("\$"),
+                                            const Text("Rs."),
                                             Text("${singleJob?.salary}"),
                                           ],
                                         )

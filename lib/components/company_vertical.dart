@@ -68,7 +68,7 @@ class _CompanyVerticalState extends State<CompanyVertical> {
                                         Row(
                                           mainAxisAlignment: MainAxisAlignment.end,
                                           children: [
-                                            Text("\$"),
+                                            Text("Rs."),
                                             Text("${singleJob?.salary}"),
                                           ],
                                         )

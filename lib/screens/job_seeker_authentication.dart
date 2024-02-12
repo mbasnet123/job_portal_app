@@ -88,20 +88,23 @@ class _JobSeekerAuthState extends State<JobSeekerAuth> {
                                           shape: BoxShape.circle),
                                     ),
                                     title: Text("${singleJob.companyName}"),
-                                    subtitle: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Text("${singleJob.position}"),
-                                        Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.end,
-                                          children: [
-                                            Text("\$"),
-                                            Text("${singleJob.salary}"),
-                                          ],
-                                        )
-                                      ],
+                                    subtitle: SingleChildScrollView(
+                                      scrollDirection: Axis.horizontal,
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text("${singleJob.position}"),
+                                          Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.end,
+                                            children: [
+                                              Text("Rs."),
+                                              Text("${singleJob.salary}"),
+                                            ],
+                                          )
+                                        ],
+                                      ),
                                     ),
                                     trailing: TextButton(
                                         child: Text("Apply"),

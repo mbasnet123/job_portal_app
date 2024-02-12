@@ -333,7 +333,7 @@ class _CompanyAuthState extends State<CompanyAuth> {
                                           mainAxisAlignment:
                                               MainAxisAlignment.end,
                                           children: [
-                                            Text("\$"),
+                                            Text("Rs."),
                                             Text("${singleJob.salary}"),
                                           ],
                                         )

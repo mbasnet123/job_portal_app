@@ -42,6 +42,7 @@ class _ResetScreenState extends State<ResetScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        title: const Text("Reset Password"),
         leading: IconButton(onPressed: (){
           Navigator.pop(context);
         },icon: Icon(Icons.arrow_back_ios)),

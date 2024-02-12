@@ -8,9 +8,11 @@ class AboutPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(onPressed: (){
-          Navigator.pop(context);
-        }, icon: Icon(Icons.arrow_back_ios),
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: Icon(Icons.arrow_back_ios),
         ),
       ),
       body: SafeArea(
@@ -19,29 +21,38 @@ class AboutPage extends StatelessWidget {
             padding: const EdgeInsets.all(38.0),
             child: Column(
               children: [
-                Text("Our Team:",
-                style: TextStyle(
-                  fontSize: 25,
-                ),),
+                Text(
+                  "Our Team:",
+                  style: TextStyle(
+                    fontSize: 25,
+                  ),
+                ),
                 SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
                   child: Row(
-                    children: List.generate(
-                        teamDesc.length, (index) {
-                      return TeamDesc(imageLink: teamDesc[index].imageLink, nameDesc: teamDesc[index].nameDesc);
+                    children: List.generate(teamDesc.length, (index) {
+                      return TeamDesc(
+                          imageLink: teamDesc[index].imageLink,
+                          nameDesc: teamDesc[index].nameDesc);
                     }),
                   ),
                 ),
-                SizedBox(height: 30,),
-                Text("We are a team of dedicated developers passionate about connecting job seekers and employers. With expertise in technology and user experience, we strive to create a seamless and efficient job search platform."
-                ,style: TextStyle(
+                SizedBox(
+                  height: 30,
+                ),
+                Text(
+                  "We are a team of dedicated developers passionate about connecting job seekers and employers. With expertise in technology and user experience, we strive to create a seamless and efficient job search platform.",
+                  style: TextStyle(
                     fontSize: 15,
-                  ),),
-                SizedBox(height: 10,),
-                Row(
+                  ),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                const Row(
                   children: [
                     Icon(Icons.location_on_sharp),
-                    Text("Tikathali, Lalitpur"),
+                    Text("Minbhawan, Kathmandu"),
                   ],
                 )
               ],
@@ -71,21 +82,22 @@ class TeamDesc extends StatelessWidget {
         child: Column(
           children: [
             // Text("Our Team"),
-            SizedBox(height: 20,),
+            SizedBox(
+              height: 20,
+            ),
             CircleAvatar(
-              backgroundImage: NetworkImage(
-                  imageLink),
+              backgroundImage: NetworkImage(imageLink),
               radius: 50,
             ),
-            Text(nameDesc,
-            style: TextStyle(
-              fontSize: 20,
-            ),),
+            Text(
+              nameDesc,
+              style: TextStyle(
+                fontSize: 20,
+              ),
+            ),
           ],
         ),
       ),
     );
   }
 }
-
-
